@@ -3,6 +3,14 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { IncomeModule } from './income/income.module';
+import { DepartmentModule } from './department/department.module';
+import { SupervisorModule } from './supervisor/supervisor.module';
+import { MaterialsModule } from './materials/materials.module';
+import { TasksModule } from './tasks/tasks.module';
+import { EmployeeModule } from './employee/employee.module';
+import { InventoryModule } from './inventory/inventory.module';
+import { WarehouseModule } from './warehouse/warehouse.module';
 
 @Module({
   imports: [
@@ -21,6 +29,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       }),
       inject: [ConfigService],
     }),
+    IncomeModule,
+    DepartmentModule,
+    SupervisorModule,
+    MaterialsModule,
+    TasksModule,
+    EmployeeModule,
+    InventoryModule,
+    WarehouseModule,
   ],
   controllers: [AppController],
   providers: [AppService],
