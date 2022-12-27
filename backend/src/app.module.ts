@@ -4,8 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { IncomeModule } from './income/income.module';
-import { DepartmentModule } from './department/department.module';
-import { SupervisorModule } from './supervisor/supervisor.module';
+import { DepartmentsModule } from './departments/department.module';
 import { MaterialsModule } from './materials/materials.module';
 import { TasksModule } from './tasks/tasks.module';
 import { EmployeeModule } from './employee/employee.module';
@@ -13,14 +12,14 @@ import { InventoryModule } from './inventory/inventory.module';
 import { WarehouseModule } from './warehouse/warehouse.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { UsersModule } from './users/users.module';
 
 dotenv.config();
 
 @Module({
   imports: [
     IncomeModule,
-    DepartmentModule,
-    SupervisorModule,
+    DepartmentsModule,
     MaterialsModule,
     TasksModule,
     EmployeeModule,
@@ -41,6 +40,7 @@ dotenv.config();
       synchronize: true,
       autoLoadEntities: true,
     }),
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
