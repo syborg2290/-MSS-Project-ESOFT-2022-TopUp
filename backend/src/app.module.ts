@@ -4,27 +4,28 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { IncomeModule } from './income/income.module';
-import { DepartmentsModule } from './departments/department.module';
-import { MaterialsModule } from './materials/materials.module';
-import { TasksModule } from './tasks/tasks.module';
+import { DepartmentModule } from './department/department.module';
+import { MaterialModule } from './material/material.module';
+import { TaskModule } from './task/task.module';
 import { EmployeeModule } from './employee/employee.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { WarehouseModule } from './warehouse/warehouse.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { UsersModule } from './users/users.module';
+import { UserModule } from './user/user.module';
 
 dotenv.config();
 
 @Module({
   imports: [
     IncomeModule,
-    DepartmentsModule,
-    MaterialsModule,
-    TasksModule,
+    DepartmentModule,
+    MaterialModule,
+    TaskModule,
     EmployeeModule,
     InventoryModule,
     WarehouseModule,
+    UserModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
@@ -40,7 +41,6 @@ dotenv.config();
       synchronize: true,
       autoLoadEntities: true,
     }),
-    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
