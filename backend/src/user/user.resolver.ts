@@ -65,4 +65,40 @@ export class UserResolver {
       return error;
     }
   }
+
+  @Query(() => [User], { name: 'getUserById' })
+  @UseFilters(new HttpExceptionFilter())
+  async getUserById(@Args('id') id: string) {
+    try {
+      const usedBy = await this.userService.getUserById(id);
+      return usedBy;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  @Query(() => [User], { name: 'getUserByEmail' })
+  @UseFilters(new HttpExceptionFilter())
+  async getUserByEmail(@Args('email') email: string) {
+    try {
+      const usedBy = await this.userService.getUserByEmail(email);
+      return usedBy;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  @Query(() => [User], { name: 'getUserByUsername' })
+  @UseFilters(new HttpExceptionFilter())
+  async getUserByUsername(@Args('username') username: string) {
+    try {
+      const usedBy = await this.userService.getUserByUsername(username);
+      return usedBy;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
 }

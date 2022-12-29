@@ -1,7 +1,4 @@
-import {
-  HttpStatus,
-  Injectable,
-} from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
   CognitoUserPool,
@@ -86,6 +83,39 @@ export class UserService {
           },
         ),
       );
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  getUserById(id: string): Promise<User> {
+    try {
+      return this.userRepository.findOne({
+        where: { id: id },
+      });
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  getUserByEmail(email: string): Promise<User> {
+    try {
+      return this.userRepository.findOne({
+        where: { email: email },
+      });
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  getUserByUsername(username: string): Promise<User> {
+    try {
+      return this.userRepository.findOne({
+        where: { username: username },
+      });
     } catch (error) {
       console.log(error);
       return error;
