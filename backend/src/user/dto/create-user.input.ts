@@ -17,5 +17,5 @@ export class UserCreateDTO {
   password: string;
   @Field()
   @Column()
-  level: string;
+  emaployeeId: string;
 }

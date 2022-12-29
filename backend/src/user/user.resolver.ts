@@ -15,13 +15,13 @@ export class UserResolver {
     try {
       let result: object = {};
       let userRe: any = await this.userService.createUser(user);
-      if (userRe) {
+      if (userRe.status != HttpStatus.OK) {
         result = {
-          status: HttpStatus.OK,
+          status: userRe.status,
         };
       } else {
         result = {
-          status: HttpStatus.BAD_REQUEST,
+          status: userRe.status,
         };
       }
 

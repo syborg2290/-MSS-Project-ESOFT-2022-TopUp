@@ -17,6 +17,6 @@ export class User {
   @Column()
   password: string;
   @Field({ nullable: false })
-  @Column()
-  level: string;
+  @Column({ unique: true })
+  emaployeeId: string;
 }

@@ -63,26 +63,43 @@ export class UserService {
     });
   }
 
-  async createUser(user: UserCreateDTO): Promise<User> {
+  async createUser(user: UserCreateDTO): Promise<Object> {
     try {
       let attributeList = [];
 
-      return new Promise((resolve, reject) =>
-        this.userPool.signUp(
-          user.email,
-          user.password,
-          attributeList,
-          null,
-          (err, result) => {
-            if (err) {
-              reject(err);
-            } else {
-              const userEn = this.userRepository.create(user);
-              resolve(this.userRepository.save(userEn));
-            }
-          },
-        ),
-      );
+      return new Promise((resolve, reject) => {
+        const isUserAleradyExists = this.getUserByEmail(user.email);
+        if (isUserAleradyExists !== null) {
+          this.userPool.signUp(
+            user.email,
+            user.password,
+            attributeList,
+            null,
+            (err, result) => {
+              if (err) {
+                reject({
+                  message: err.message,
+                  status: HttpStatus.BAD_REQUEST,
+                  data: null,
+                });
+              } else {
+                const userEn = this.userRepository.create(user);
+                resolve({
+                  message: 'success',
+                  status: HttpStatus.OK,
+                  data: this.userRepository.save(userEn),
+                });
+              }
+            },
+          );
+        } else {
+          reject({
+            message: 'Email already used!',
+            status: HttpStatus.BAD_REQUEST,
+            data: null,
+          });
+        }
+      });
     } catch (error) {
       console.log(error);
       return error;
