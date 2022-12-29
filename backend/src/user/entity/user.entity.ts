@@ -8,8 +8,11 @@ export class User {
   @PrimaryColumn({ unique: true, nullable: false })
   id: string;
   @Field({ nullable: false })
-  @Column()
+  @Column({ unique: true })
   username: string;
+  @Field({ nullable: false })
+  @Column({ unique: true })
+  email: string;
   @Field({ nullable: false })
   @Column()
   password: string;

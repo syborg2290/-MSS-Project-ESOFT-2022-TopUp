@@ -11,6 +11,9 @@ export class UserCreateDTO {
   username: string;
   @Field()
   @Column()
+  email: string;
+  @Field()
+  @Column()
   password: string;
   @Field()
   @Column()
