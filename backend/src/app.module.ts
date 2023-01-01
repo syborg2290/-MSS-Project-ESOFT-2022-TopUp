@@ -13,6 +13,8 @@ import { WarehouseModule } from './warehouse/warehouse.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UserModule } from './user/user.module';
+import { UnitModule } from './unit/unit.module';
+import { UnitMemberModule } from './unit_member/unit_member.module';
 
 dotenv.config();
 
@@ -26,6 +28,8 @@ dotenv.config();
     InventoryModule,
     WarehouseModule,
     UserModule,
+    UnitModule,
+    UnitMemberModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,

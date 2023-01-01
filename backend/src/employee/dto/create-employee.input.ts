@@ -50,9 +50,6 @@ export class EmployeeCreateDTO {
   role: string;
   @Field()
   @Column()
-  department: string;
-  @Field()
-  @Column()
   salary: number;
   @Field()
   @Column()

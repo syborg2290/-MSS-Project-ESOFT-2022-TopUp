@@ -5,7 +5,7 @@ import {
   AuthenticationDetails,
   CognitoUser,
 } from 'amazon-cognito-identity-js';
-import { EmployeeService } from 'src/employee/employee.service';
+import { EmployeeService } from '../employee/employee.service';
 import { Repository } from 'typeorm';
 import { UserCreateDTO } from './dto/create-user.input';
 import { User } from './entity/user.entity';

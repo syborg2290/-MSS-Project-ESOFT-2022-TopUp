@@ -13,8 +13,8 @@ export class EmployeeService {
 
   async createEmployee(employee: EmployeeCreateDTO): Promise<Object> {
     try {
-      return new Promise((resolve, reject) => {
-        const isEmployeeAlreadyExists = this.getEmployeeByEmail(employee.email);
+      return new Promise(async(resolve, reject) => {
+        const isEmployeeAlreadyExists = await this.getEmployeeByEmail(employee.email);
         if (isEmployeeAlreadyExists !== null) {
           const empEn = this.employeeRepository.create(employee);
           resolve({

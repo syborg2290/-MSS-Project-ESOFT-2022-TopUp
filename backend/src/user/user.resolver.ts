@@ -1,6 +1,6 @@
 import { Resolver, Query, Args, Context, Mutation } from '@nestjs/graphql';
 import { UseFilters, HttpStatus } from '@nestjs/common';
-import { HttpExceptionFilter } from 'src/helper/exception.filter';
+import { HttpExceptionFilter } from '../helper/exception.filter';
 import { User } from './entity/user.entity';
 import { UserService } from './user.service';
 import { UserCreateDTO } from './dto/create-user.input';

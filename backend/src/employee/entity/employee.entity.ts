@@ -50,9 +50,6 @@ export class Employee {
   @Column()
   role: string;
   @Field({ nullable: false })
-  @Column()
-  department: string;
-  @Field({ nullable: false })
   @Column({ type: 'decimal', precision: 10, scale: 2, default: 0 })
   salary: number;
   @Field({ nullable: false })
