@@ -1,5 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Employee } from 'src/employee/entity/employee.entity';
+import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
 
 @Entity()
 @ObjectType()
@@ -13,10 +14,8 @@ export class User {
   @Field({ nullable: false })
   @Column({ unique: true })
   email: string;
-  @Field({ nullable: false })
-  @Column()
-  password: string;
-  @Field({ nullable: false })
-  @Column({ unique: true })
-  emaployeeId: string;
+
+  @OneToOne(() => Employee)
+  @JoinColumn()
+  emaployee: Employee;
 }

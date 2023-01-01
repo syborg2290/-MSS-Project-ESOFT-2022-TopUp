@@ -1,10 +1,11 @@
-import { HttpStatus, Injectable } from '@nestjs/common';
+import { HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
   CognitoUserPool,
   AuthenticationDetails,
   CognitoUser,
 } from 'amazon-cognito-identity-js';
+import { EmployeeService } from 'src/employee/employee.service';
 import { Repository } from 'typeorm';
 import { UserCreateDTO } from './dto/create-user.input';
 import { User } from './entity/user.entity';
@@ -14,6 +15,8 @@ export class UserService {
   private userPool: CognitoUserPool;
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
+    @Inject(EmployeeService)
+    private readonly employeeService: EmployeeService,
   ) {
     this.userPool = new CognitoUserPool({
       UserPoolId: process.env.USERPOOLID,
@@ -75,7 +78,7 @@ export class UserService {
             user.password,
             attributeList,
             null,
-            (err, result) => {
+            async (err, result) => {
               if (err) {
                 reject({
                   message: err.message,
@@ -83,12 +86,23 @@ export class UserService {
                   data: null,
                 });
               } else {
-                const userEn = this.userRepository.create(user);
-                resolve({
-                  message: 'success',
-                  status: HttpStatus.OK,
-                  data: this.userRepository.save(userEn),
-                });
+                const employee = await this.employeeService.getEmployeeById(
+                  user.emaployeeId,
+                );
+                if (employee) {
+                  const userDbObj = {
+                    id: user.id,
+                    username: user.username,
+                    email: user.email,
+                    emaployee: employee,
+                  };
+                  const userEn = this.userRepository.create(userDbObj);
+                  resolve({
+                    message: 'success',
+                    status: HttpStatus.OK,
+                    data: this.userRepository.save(userEn),
+                  });
+                }
               }
             },
           );
