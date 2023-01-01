@@ -35,6 +35,32 @@ export class EmployeeResolver {
     }
   }
 
+  @Mutation(() => [Employee], { name: 'updateEmployee' })
+  @UseFilters(new HttpExceptionFilter())
+  async updateEmployee(
+    @Args('employee') employee: EmployeeCreateDTO,
+    @Context() context,
+  ) {
+    try {
+      let result: object = {};
+      let empRe: any = await this.employeeService.updateEmployee(employee);
+      if (empRe.status != HttpStatus.OK) {
+        result = {
+          status: empRe.status,
+        };
+      } else {
+        result = {
+          status: empRe.status,
+        };
+      }
+
+      return result;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
   @Query(() => [Employee], { name: 'getEmployeeById' })
   @UseFilters(new HttpExceptionFilter())
   async getEmployeeById(@Args('id') id: string) {

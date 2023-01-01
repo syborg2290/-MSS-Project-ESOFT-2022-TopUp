@@ -36,6 +36,22 @@ export class EmployeeService {
     }
   }
 
+  async updateEmployee(employee: EmployeeCreateDTO): Promise<Object> {
+    try {
+      return new Promise((resolve, reject) => {
+        const empEn = this.employeeRepository.create(employee);
+        resolve({
+          message: 'success',
+          status: HttpStatus.OK,
+          data: this.employeeRepository.save(empEn),
+        });
+      });
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
   getEmployeeById(id: string): Promise<Employee> {
     try {
       return this.employeeRepository.findOne({
