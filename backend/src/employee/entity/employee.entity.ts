@@ -1,5 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Task } from 'src/task/entity/task.entity';
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 
 @Entity()
 @ObjectType()
@@ -43,6 +44,9 @@ export class Employee {
   @Field({ nullable: false })
   @Column()
   leaves: number;
+  @Field()
+  @Column()
+  department: string;
   @Field({ nullable: false })
   @Column()
   position: string;
@@ -58,4 +62,6 @@ export class Employee {
   @Field({ nullable: false })
   @Column()
   address: string;
+  @OneToMany(() => Task, (task) => task.employee)
+  tasks: Task[];
 }

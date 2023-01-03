@@ -14,6 +14,8 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UserModule } from './user/user.module';
 import { UnitModule } from './unit/unit.module';
 import { UnitMemberModule } from './unit_member/unit_member.module';
+import { PrototypeModule } from './prototype/prototype.module';
+import { ProjectModule } from './project/project.module';
 
 dotenv.config();
 
@@ -43,6 +45,8 @@ dotenv.config();
       synchronize: true,
       autoLoadEntities: true,
     }),
+    PrototypeModule,
+    ProjectModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -44,6 +44,9 @@ export class EmployeeCreateDTO {
   leaves: number;
   @Field()
   @Column()
+  department: string;
+  @Field()
+  @Column()
   position: string;
   @Field()
   @Column()

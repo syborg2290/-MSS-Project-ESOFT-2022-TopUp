@@ -1,22 +1,28 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { UnitMember } from '../../unit_member/entity/unit_member.entity';
-import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 import { Task } from 'src/task/entity/task.entity';
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 
 @Entity()
 @ObjectType()
-export class Unit {
+export class Prototype {
   @Field({ nullable: false })
   @PrimaryColumn({ unique: true, nullable: false })
   id: string;
   @Field({ nullable: false })
   @Column({ unique: true })
-  code: string;
+  name: string;
   @Field({ nullable: false })
   @Column()
-  department: string;
-  @OneToMany(() => UnitMember, (uniMe) => uniMe.unit)
-  members: UnitMember[];
-  @OneToMany(() => Task, (task) => task.unit)
+  avg_duration: Number;
+  @Field()
+  @Column()
+  time_unit: string;
+  @Field()
+  @Column()
+  avg_cost: Number;
+  @Field()
+  @Column()
+  materials: string;    
+  @OneToMany(() => Task, (task) => task.prototype)
   tasks: Task[];
 }
