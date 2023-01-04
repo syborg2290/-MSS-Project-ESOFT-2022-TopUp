@@ -6,12 +6,15 @@ import { Task } from './entity/task.entity';
 import { TaskCreateDTO } from './dto/create-dto.input';
 import { EmployeeService } from 'src/employee/employee.service';
 import { PrototypeService } from 'src/prototype/prototype.service';
+import { ProjectService } from 'src/project/project.service';
 
 @Injectable()
 export class TaskService {
   constructor(
     @InjectRepository(Task)
     private taskRepository: Repository<Task>,
+    @Inject(ProjectService)
+    private readonly projectService: ProjectService,
     @Inject(UnitService)
     private readonly unitService: UnitService,
     @Inject(EmployeeService)
@@ -23,6 +26,7 @@ export class TaskService {
   async addTask(task: TaskCreateDTO): Promise<Object> {
     try {
       return new Promise(async (resolve, reject) => {
+        const project = await this.projectService.getProjectById(task.project);
         const unit = await this.unitService.getUnitById(task.unit);
         const employee = await this.empService.getEmployeeById(task.employee);
         const prototype = await this.prototypeService.getPrototypeById(
@@ -35,6 +39,7 @@ export class TaskService {
             avg_duration: task.avg_duration,
             supervisor: task.supervisor,
             induvidualOrUnit: task.induvidualOrUnit,
+            project: project,
             unit: unit,
             employee: employee,
             prototype: prototype,
@@ -57,6 +62,7 @@ export class TaskService {
   async updateTheTask(task: TaskCreateDTO): Promise<Object> {
     try {
       return new Promise(async (resolve, reject) => {
+        const project = await this.projectService.getProjectById(task.project);
         const unit = await this.unitService.getUnitById(task.unit);
         const employee = await this.empService.getEmployeeById(task.employee);
         const prototype = await this.prototypeService.getPrototypeById(
@@ -69,6 +75,7 @@ export class TaskService {
             avg_duration: task.avg_duration,
             supervisor: task.supervisor,
             induvidualOrUnit: task.induvidualOrUnit,
+            project: project,
             unit: unit,
             employee: employee,
             prototype: prototype,

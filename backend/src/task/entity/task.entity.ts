@@ -1,5 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { Employee } from 'src/employee/entity/employee.entity';
+import { Project } from 'src/project/entity/project.entity';
 import { Prototype } from 'src/prototype/entity/prototype.entity';
 import { Unit } from 'src/unit/entity/unit.entity';
 import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
@@ -22,6 +23,8 @@ export class Task {
   @Field()
   @Column()
   induvidualOrUnit: Boolean;
+  @ManyToOne(() => Project, (project) => project.tasks)
+  project: Project;
   @ManyToOne(() => Unit, (unit) => unit.tasks)
   unit: Unit;
   @ManyToOne(() => Employee, (emp) => emp.tasks)

@@ -20,6 +20,9 @@ export class TaskCreateDTO {
   induvidualOrUnit: Boolean;
   @Field()
   @Column()
+  project: string;
+  @Field()
+  @Column()
   unit: string;
   @Field()
   @Column()
