@@ -11,9 +11,6 @@ export class TaskCreateDTO {
   title: string;
   @Field()
   @Column()
-  avg_duration: Number;
-  @Field()
-  @Column()
   supervisor: string;
   @Field()
   @Column()
@@ -32,5 +29,8 @@ export class TaskCreateDTO {
   prototype: string;
   @Field()
   @Column()
-  date: string;    
+  start_date: string;
+  @Field()
+  @Column()
+  finished_date: string;     
 }

@@ -1,5 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { ExtraMaterial } from 'src/extra_meterial_request/entity/extra_meterial.entity';
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 
 @Entity()
 @ObjectType()
@@ -16,4 +17,6 @@ export class Material {
   @Field()
   @Column()
   cost_pre_unit: Number;
+  @OneToMany(() => ExtraMaterial, (exMat) => exMat.material)
+  extra_meterials: ExtraMaterial[];
 }

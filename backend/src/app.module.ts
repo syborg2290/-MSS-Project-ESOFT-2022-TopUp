@@ -16,6 +16,7 @@ import { UnitModule } from './unit/unit.module';
 import { UnitMemberModule } from './unit_member/unit_member.module';
 import { PrototypeModule } from './prototype/prototype.module';
 import { ProjectModule } from './project/project.module';
+import { ExtraMeterialRequestModule } from './extra_meterial_request/extra_meterial_request.module';
 
 dotenv.config();
 
@@ -47,6 +48,7 @@ dotenv.config();
     }),
     PrototypeModule,
     ProjectModule,
+    ExtraMeterialRequestModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -14,6 +14,9 @@ export class User {
   @Field({ nullable: false })
   @Column({ unique: true })
   email: string;
+  @Field({ nullable: false })
+  @Column({ unique: true })
+  password: string;
 
   @OneToOne(() => Employee)
   @JoinColumn()

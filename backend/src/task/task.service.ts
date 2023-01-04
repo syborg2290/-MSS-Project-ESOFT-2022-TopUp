@@ -36,14 +36,14 @@ export class TaskService {
           const taskDbObj = {
             id: task.id,
             title: task.title,
-            avg_duration: task.avg_duration,
             supervisor: task.supervisor,
             induvidualOrUnit: task.induvidualOrUnit,
             project: project,
             unit: unit,
             employee: employee,
             prototype: prototype,
-            date: task.date,
+            start_date: task.start_date,
+            finished_date: task.finished_date,
           };
           const taskEn = this.taskRepository.create(taskDbObj);
           resolve({
@@ -72,14 +72,14 @@ export class TaskService {
           const taskDbObj = {
             id: task.id,
             title: task.title,
-            avg_duration: task.avg_duration,
             supervisor: task.supervisor,
             induvidualOrUnit: task.induvidualOrUnit,
             project: project,
             unit: unit,
             employee: employee,
             prototype: prototype,
-            date: task.date,
+            start_date: task.start_date,
+            finished_date: task.finished_date,
           };
           const taskEn = this.taskRepository.create(taskDbObj);
           resolve({

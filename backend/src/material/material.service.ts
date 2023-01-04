@@ -1,6 +1,7 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { MaterialCreateDTO } from './dto/create-dto-input';
 import { Material } from './entity/material.entity';
 
 @Injectable()
@@ -10,7 +11,7 @@ export class MaterialService {
     private materialRepository: Repository<Material>,
   ) {}
 
-  async createMaterial(material: Material): Promise<Object> {
+  async createMaterial(material: MaterialCreateDTO): Promise<Object> {
     try {
       return new Promise((resolve, reject) => {
         const materialEn = this.materialRepository.create(material);
@@ -26,7 +27,7 @@ export class MaterialService {
     }
   }
 
-  async updateMaterial(material: Material): Promise<Object> {
+  async updateMaterial(material: MaterialCreateDTO): Promise<Object> {
     try {
       return new Promise((resolve, reject) => {
         const prototypeEn = this.materialRepository.create(material);

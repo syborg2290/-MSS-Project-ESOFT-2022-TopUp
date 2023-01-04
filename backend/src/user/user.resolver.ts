@@ -35,16 +35,16 @@ export class UserResolver {
   @Mutation(() => [User], { name: 'signIn' })
   @UseFilters(new HttpExceptionFilter())
   async signIn(
-    @Args('email') email: string,
+    @Args('username') username: string,
     @Args('password') password: string,
     @Context() context,
   ) {
     try {
       let result: object = {};
-      let user: any = await this.userService.authenticateUser({
-        email,
+      let user: any = await this.userService.authenticateUser(
+        username,
         password,
-      });
+      );
       if (user.data && user.data.status != HttpStatus.OK) {
         result = {
           status: user.data.status,
