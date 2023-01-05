@@ -29,6 +29,12 @@ import UnitLIst from "./pages/list/UnitList";
 import UnitList from "./pages/list/UnitList";
 import UnitView from "./pages/single/UnitView";
 import UnitAdd from "./pages/new/UnitAdd";
+import UnitsMemeberList from "./pages/list/UnitsMemeberList";
+import UnitsMemberView from "./pages/single/UnitsMemberView";
+import UnitsMemberAdd from "./pages/new/UnitsMemberAdd";
+import SubInvenotryList from "./pages/list/SubInvenotryList";
+import SubInventoryView from "./pages/single/SubInventoryView";
+import SubInventoryAdd from "./pages/new/SubInventoryAdd";
 
 function App() {
  
@@ -113,8 +119,22 @@ function App() {
               <Route path=":unitID" element={<UnitView/>} />
               <Route
                 path="new"
-                element={<UnitAdd title="Add new Title"/>}
+                element={<UnitAdd title="Add new Units"/>}
               />
+            </Route>
+            <Route path="unitsmember">
+              <Route index element={<UnitsMemeberList/>} />
+              <Route path=":unitmemberID" element={<UnitsMemberView/>} />
+              <Route
+                path="new"
+                element={<UnitsMemberAdd title="Add new UnitsMember"/>}/>
+            </Route>
+            <Route path="subinventory">
+              <Route index element={<SubInvenotryList/>} />
+              <Route path=":subinventoryID" element={<SubInventoryView/>} />
+              <Route
+                path="new"
+                element={<SubInventoryAdd title="Add new subInventory"/>}/>
             </Route>
           </Route>
         </Routes>

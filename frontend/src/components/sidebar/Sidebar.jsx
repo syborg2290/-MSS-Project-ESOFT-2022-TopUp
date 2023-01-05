@@ -87,6 +87,18 @@ const Sidebar = () => {
             <span>Units</span>
           </li>
           </Link>
+          <Link to="/unitsmember" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
+              <span>Units Members</span>
+            </li>
+          </Link>
+          <Link to="/subinventory" style={{ textDecoration: "none" }}>
+          <li>
+            <InsertChartIcon className="icon" />
+            <span>Sub Inventory</span>
+          </li>
+          </Link>
           <li>
             <NotificationsNoneIcon className="icon" />
             <span>Notifications</span>
