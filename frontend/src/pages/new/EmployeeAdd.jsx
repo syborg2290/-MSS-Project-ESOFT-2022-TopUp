@@ -1,9 +1,9 @@
-import "./productAdd.scss";
+import "./employeeAdd.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 // import { useState } from "react";
 
-const New = ({ inputs, title }) => {
+const EmployeeAdd = ({ inputs, title }) => {
   // const [file, setFile] = useState("");
 
   return (
@@ -25,12 +25,12 @@ const New = ({ inputs, title }) => {
                 </div>
               ))} */}
               <div className="formInput">
-                <label>ProductName</label>
+                <label>EmployeeName</label>
                 <input type="text" placeholder="Mac book">
                 </input>
               </div>
               <div className="formInput">
-                <label>UserName</label>
+                <label>MaterialsName</label>
                 <input type="text" placeholder="john doe">
                 </input>
               </div>
@@ -62,7 +62,7 @@ const New = ({ inputs, title }) => {
               <div className="formInput">
                 <label>UserName</label>
                 <input type="text" placeholder="john doe">
-                </input>
+                </input>    
               </div>
               <div className="formInput">
                 <label>UserName</label>
@@ -78,4 +78,4 @@ const New = ({ inputs, title }) => {
   );
 };
 
-export default New;
+export default EmployeeAdd;

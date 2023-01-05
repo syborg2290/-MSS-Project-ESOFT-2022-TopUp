@@ -1,10 +1,10 @@
-import "./productView.scss";
+import "./prototypeView.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Chart from "../../components/chart/Chart";
 import List from "../../components/table/Table";
 
-const ProductView = () => {
+const PrototypeView = () => {
   return (
     <div className="single">
       <Sidebar />
@@ -21,7 +21,7 @@ const ProductView = () => {
                 className="itemImg"
               /> */}
               <div className="details">
-                <h1 className="itemTitle">Mac Book Pro</h1>
+                <h1 className="itemTitle">Prototype</h1>
                 <div className="detailItem">
                   <span className="itemKey">Email:</span>
                   <span className="itemValue">Macbook@gmail.com</span>
@@ -37,11 +37,11 @@ const ProductView = () => {
                   </span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Working Factory:</span>
+                  <span className="itemKey">Order Factory:</span>
                   <span className="itemValue">Lock Create</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Working Unit:</span>
+                  <span className="itemKey">Order Unit:</span>
                   <span className="itemValue">Warehouse</span>
                 </div>
               </div>
@@ -60,4 +60,4 @@ const ProductView = () => {
   );
 };
 
-export default ProductView;
+export default PrototypeView;
