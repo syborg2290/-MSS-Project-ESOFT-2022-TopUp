@@ -15,6 +15,9 @@ export class Task {
   @Field({ nullable: false })
   @Column({ unique: true })
   title: string;
+  @Field({ nullable: false })
+  @Column({ default: 'pending' })
+  taskstatus: string;
   @Field()
   @Column()
   supervisor: string;

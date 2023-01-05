@@ -11,6 +11,9 @@ export class TaskCreateDTO {
   title: string;
   @Field()
   @Column()
+  taskstatus: string;
+  @Field()
+  @Column()
   supervisor: string;
   @Field()
   @Column()

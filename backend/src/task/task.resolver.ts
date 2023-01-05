@@ -55,6 +55,36 @@ export class TaskResolver {
     }
   }
 
+  @Mutation(() => [Task], { name: 'updateTaskStatus' })
+  @UseFilters(new HttpExceptionFilter())
+  async updateTaskProgress(
+    @Args('id') id: string,
+    @Args('newStatus') newStatus: string,
+    @Context() context,
+  ) {
+    try {
+      let result: object = {};
+      let unitRe: any = await this.taskService.updateTaskProgress(
+        id,
+        newStatus,
+      );
+      if (unitRe.status != HttpStatus.OK) {
+        result = {
+          status: unitRe.status,
+        };
+      } else {
+        result = {
+          status: unitRe.status,
+        };
+      }
+
+      return result;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
   @Query(() => [Task], { name: 'getTaskById' })
   @UseFilters(new HttpExceptionFilter())
   async getTaskById(@Args('id') id: string) {

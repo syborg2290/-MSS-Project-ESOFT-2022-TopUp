@@ -36,6 +36,7 @@ export class TaskService {
           const taskDbObj = {
             id: task.id,
             title: task.title,
+            taskstatus: task.taskstatus,
             supervisor: task.supervisor,
             induvidualOrUnit: task.induvidualOrUnit,
             project: project,
@@ -72,6 +73,7 @@ export class TaskService {
           const taskDbObj = {
             id: task.id,
             title: task.title,
+            taskstatus: task.taskstatus,
             supervisor: task.supervisor,
             induvidualOrUnit: task.induvidualOrUnit,
             project: project,
@@ -86,6 +88,25 @@ export class TaskService {
             message: 'success',
             status: HttpStatus.OK,
             data: this.taskRepository.save(taskEn),
+          });
+        }
+      });
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  async updateTaskProgress(id: string, newStatus: string): Promise<Object> {
+    try {
+      return new Promise(async (resolve, reject) => {
+        const task = await this.getTaskById(id);
+        if (task) {
+          task.taskstatus = newStatus;
+          resolve({
+            message: 'success',
+            status: HttpStatus.OK,
+            data: this.taskRepository.save(task),
           });
         }
       });
