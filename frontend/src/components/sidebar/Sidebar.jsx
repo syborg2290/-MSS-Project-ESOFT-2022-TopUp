@@ -18,7 +18,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="top">
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/home" style={{ textDecoration: "none" }}>
           <span className="logo">lockHood</span>
         </Link>
       </div>
@@ -26,7 +26,7 @@ const Sidebar = () => {
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
-          <Link to="/" style={{ textDecoration: "none" }}>   
+          <Link to="/home" style={{ textDecoration: "none" }}>   
           <li>
             <DashboardIcon className="icon" />
             <span>Dashboard</span>
@@ -39,10 +39,16 @@ const Sidebar = () => {
               <span>Users</span>
             </li>
           </Link>
-          <Link to="/products" style={{ textDecoration: "none" }}>
+          <Link to="/materials" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
-              <span>Products</span>
+              <span>Materials</span>
+            </li>
+          </Link>
+          <Link to="/employee" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
+              <span>Employee</span>
             </li>
           </Link>
           <Link to="/tasks" style={{ textDecoration: "none" }}>
@@ -51,14 +57,22 @@ const Sidebar = () => {
             <span>Tasks</span>
           </li>
           </Link>
+          <Link to="/orders" style={{ textDecoration: "none" }}>
           <li>
             <LocalShippingIcon className="icon" />
             <span>Orders</span>
           </li>
+          </Link>
           <Link to="/warehouse" style={{ textDecoration: "none" }}>
           <li>
             <InsertChartIcon className="icon" />
             <span>Warehouse</span>
+          </li>
+          </Link>
+          <Link to="/prototype" style={{ textDecoration: "none" }}>
+          <li>
+            <CreditCardIcon className="icon" />
+            <span>Prototype</span>
           </li>
           </Link>
           <li>

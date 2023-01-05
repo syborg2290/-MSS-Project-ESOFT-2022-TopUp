@@ -3,7 +3,7 @@ export const userColumns = [
     { field: "id", headerName: "ID", width: 70 },
     {
       field: "user",
-      headerName: "ProductUser",
+      headerName: "materialName",
       width: 230,
       renderCell: (params) => {
         return (
@@ -16,18 +16,18 @@ export const userColumns = [
     },
     {
       field: "email",
-      headerName: "ProductEmail",
+      headerName: "materialsPrice",
       width: 230,
     },
   
     {
       field: "age",
-      headerName: "ProductAge",
+      headerName: "MaterialQty",
       width: 100,
     },
     {
       field: "status",
-      headerName: "Status",
+      headerName: "MaterilStatus",
       width: 160,
       renderCell: (params) => {
         return (
@@ -44,7 +44,7 @@ export const userColumns = [
   export const userRows = [
     {
       id: 1,
-      username: "Tharaka Dasunpriya",
+      username: "materials1",
       status: "active",
       email: "Tharaka Dasunpriya@gmail.com",
       age: 35,
@@ -52,63 +52,63 @@ export const userColumns = [
     {
       id: 2,
       username: "Tharaka Dasunpriya2",
-      email: "Tharaka Dasun2@gmail.com",
+      email: 56,
       status: "passive",
       age: 42,
     },
     {
       id: 3,
       username: "ProductTharaka Dasunpriya3",
-      email: "Tharaka Dasun3@gmail.com",
+      email:34,
       status: "pending",
       age: 45,
     },
     {
       id: 4,
       username: "ProductTharaka Dasunpriya4",
-      email: "Tharaka Dasun4@gmail.com",
+      email:33,
       status: "active",
       age: 16,
     },
     {
       id: 5,
       username: "Tharaka Dasun5",
-      email: "Tharaka Dasun5@gmail.com",
+      email:55,
       status: "passive",
       age: 22,
     },
     {
       id: 6,
       username: "Tharaka Dasun6",
-      email: "Tharaka Dasun6@gmail.com",
+      email: 33,
       status: "active",
       age: 15,
     },
     {
       id: 7,
       username: "Tharaka Dasun7",
-      email: "Tharaka Dasun7@gmail.com",
+      email:33,
       status: "passive",
       age: 44,
     },
     {
       id: 8,
       username: "Tharaka Dasun8",
-      email: "Tharaka Dasun8@gmail.com",
+      email:33,
       status: "active",
       age: 36,
     },
     {
       id: 9,
       username: "Tharaka Dasun9",
-      email: "Tharaka Dasun9@gmail.com",
+      email:33,
       status: "pending",
       age: 65,
     },
     {
       id: 10,
       username: "Tharaka Dasun99",
-      email: "Tharaka Dasun99@gmail.com",
+      email: 54,
       status: "active",
       age: 65,
     },

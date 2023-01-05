@@ -1,9 +1,9 @@
-import "./TaskAdd.scss";
+import "./OrdersAdd.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 // import { useState } from "react";
 
-const TaskAdd = ({ inputs, title }) => {
+const OrdersAdd = ({ inputs, title }) => {
   // const [file, setFile] = useState("");
 
   return (
@@ -25,12 +25,12 @@ const TaskAdd = ({ inputs, title }) => {
                 </div>
               ))} */}
               <div className="formInput">
-                <label>TaskName</label>
-                <input type="text" placeholder="Task 1">
+                <label>ProductName</label>
+                <input type="text" placeholder="Mac book">
                 </input>
               </div>
               <div className="formInput">
-                <label>TaskName</label>
+                <label>UserName</label>
                 <input type="text" placeholder="john doe">
                 </input>
               </div>
@@ -78,4 +78,4 @@ const TaskAdd = ({ inputs, title }) => {
   );
 };
 
-export default TaskAdd;
+export default OrdersAdd;
