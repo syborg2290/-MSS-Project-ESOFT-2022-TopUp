@@ -22,6 +22,9 @@ import EmployeeList from "./pages/list/EmployeeList";
 import PrototypeList from "./pages/list/PrototypeList";
 import PrototypeView from "./pages/single/PrototypeView";
 import PrototypeAdd from "./pages/new/PrototypeAdd";
+import ProjectList from "./pages/list/ProjectList";
+import ProjectView from "./pages/single/ProjectView";
+import ProjectAdd from "./pages/new/ProjectAdd";
 
 function App() {
  
@@ -91,6 +94,14 @@ function App() {
               <Route
                 path="new"
                 element={<PrototypeAdd title="Add new Prototype"/>}
+              />
+            </Route>
+            <Route path="projects">
+              <Route index element={<ProjectList/>} />
+              <Route path=":projectID" element={<ProjectView/>} />
+              <Route
+                path="new"
+                element={<ProjectAdd title="Add new Project"/>}
               />
             </Route>
           </Route>

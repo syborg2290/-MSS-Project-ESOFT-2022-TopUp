@@ -75,6 +75,12 @@ const Sidebar = () => {
             <span>Prototype</span>
           </li>
           </Link>
+          <Link to="/projects" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" />
+              <span>Projects</span>
+            </li>
+          </Link>
           <li>
             <NotificationsNoneIcon className="icon" />
             <span>Notifications</span>
