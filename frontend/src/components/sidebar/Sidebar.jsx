@@ -81,6 +81,12 @@ const Sidebar = () => {
               <span>Projects</span>
             </li>
           </Link>
+          <Link to="/units" style={{ textDecoration: "none" }}>
+          <li>
+            <InsertChartIcon className="icon" />
+            <span>Units</span>
+          </li>
+          </Link>
           <li>
             <NotificationsNoneIcon className="icon" />
             <span>Notifications</span>

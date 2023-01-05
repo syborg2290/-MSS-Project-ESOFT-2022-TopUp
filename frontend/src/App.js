@@ -25,6 +25,10 @@ import PrototypeAdd from "./pages/new/PrototypeAdd";
 import ProjectList from "./pages/list/ProjectList";
 import ProjectView from "./pages/single/ProjectView";
 import ProjectAdd from "./pages/new/ProjectAdd";
+import UnitLIst from "./pages/list/UnitList";
+import UnitList from "./pages/list/UnitList";
+import UnitView from "./pages/single/UnitView";
+import UnitAdd from "./pages/new/UnitAdd";
 
 function App() {
  
@@ -102,6 +106,14 @@ function App() {
               <Route
                 path="new"
                 element={<ProjectAdd title="Add new Project"/>}
+              />
+            </Route>
+            <Route path="units">
+              <Route index element={<UnitList/>} />
+              <Route path=":unitID" element={<UnitView/>} />
+              <Route
+                path="new"
+                element={<UnitAdd title="Add new Title"/>}
               />
             </Route>
           </Route>
