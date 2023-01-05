@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import Home from "./pages/home/Home";
 import UserList from "./pages/list/UserList";
 import Single from "./pages/single/Single";
@@ -26,15 +25,11 @@ import PrototypeAdd from "./pages/new/PrototypeAdd";
 import ProjectList from "./pages/list/ProjectList";
 import ProjectView from "./pages/single/ProjectView";
 import ProjectAdd from "./pages/new/ProjectAdd";
-=======
-import logo from './logo.svg';
-import './App.css';
->>>>>>> dev
 
 function App() {
+ 
   return (
     <div className="App">
-<<<<<<< HEAD
       <BrowserRouter>
           <Routes>
           <Route path="/">
@@ -112,22 +107,6 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-=======
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
->>>>>>> dev
     </div>
   );
 }
