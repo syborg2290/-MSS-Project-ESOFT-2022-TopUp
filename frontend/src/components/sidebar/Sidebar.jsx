@@ -9,10 +9,10 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   return (
     <div className="sidebar">
       <div className="top">
@@ -24,11 +24,11 @@ const Sidebar = () => {
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
-          <Link to="/home" style={{ textDecoration: "none" }}>   
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
-          </li>
+          <Link to="/home" style={{ textDecoration: "none" }}>
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Dashboard</span>
+            </li>
           </Link>
           <p className="title">LISTS</p>
           <Link to="/projects" style={{ textDecoration: "none" }}>
@@ -56,24 +56,24 @@ const Sidebar = () => {
             </li>
           </Link>
           <Link to="/tasks" style={{ textDecoration: "none" }}>
-          <li>
-            <CreditCardIcon className="icon" />
-            <span>Task</span>
-          </li>
+            <li>
+              <CreditCardIcon className="icon" />
+              <span>Task</span>
+            </li>
           </Link>
           <Link to="/warehouse" style={{ textDecoration: "none" }}>
-          <li>
-            <InsertChartIcon className="icon" />
-            <span>Warehouse</span>
-          </li>
+            <li>
+              <InsertChartIcon className="icon" />
+              <span>Warehouse</span>
+            </li>
           </Link>
           <Link to="/prototype" style={{ textDecoration: "none" }}>
-          <li>
-            <CreditCardIcon className="icon" />
-            <span>Prototype</span>
-          </li>
+            <li>
+              <CreditCardIcon className="icon" />
+              <span>Prototype</span>
+            </li>
           </Link>
-         
+
           <p className="title">SERVICE</p>
           <li>
             <SettingsSystemDaydreamOutlinedIcon className="icon" />
@@ -92,7 +92,12 @@ const Sidebar = () => {
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
           </li>
-          <li>
+          <li
+            onClick={() => {
+              localStorage.clear("token");
+              navigate("/");
+            }}
+          >
             <ExitToAppIcon className="icon" />
             <span>Logout</span>
           </li>

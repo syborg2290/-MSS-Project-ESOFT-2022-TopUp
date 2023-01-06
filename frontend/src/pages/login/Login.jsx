@@ -1,57 +1,42 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { SignInQuery } from "../../graphql/mutations/signInGraphql";
+import { apiCaller } from "../../utils/axios-request-caller";
 import "./login.scss";
 
 function Login() {
-  // React States
-  const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  // User Login info
-  const database = [
-    {
-      username: "user1",
-      password: "pass1"
-    },
-    {
-      username: "user2",
-      password: "pass2"
-    }
-  ];
-
-  const errors = {
-    uname: "invalid username",
-    pass: "invalid password"
-  };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     //Prevent page reload
     event.preventDefault();
-
-    var { uname, pass } = document.forms[0];
-
-    // Find user login info
-    const userData = database.find((user) => user.username === uname.value);
-
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        // Invalid password
-        setErrorMessages({ name: "pass", message: errors.pass });
+    if (username.length !== 0 && password.length !== 0) {
+      setIsLoading(true);
+      const graphqlQuery = {
+        operationName: "signIn",
+        query: SignInQuery,
+        variables: {
+          username: username,
+          password: password,
+        },
+      };
+      const res = await apiCaller(graphqlQuery, "");
+      if (res.data.data.signIn.token !== null) {
+        localStorage.setItem("token", res.data.data.signIn.token);
+        navigate("/home/");
+        setIsLoading(false);
       } else {
-        setIsSubmitted(true);
+        alert(res.data.data.signIn.message);
+
+        setIsLoading(false);
       }
     } else {
-      // Username not found
-      setErrorMessages({ name: "uname", message: errors.uname });
+      alert("Username and password is required!");
     }
   };
-
-  // Generate JSX code for error message
-  const renderErrorMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
 
   // JSX code for login form
   const renderForm = (
@@ -59,19 +44,32 @@ function Login() {
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label>Username </label>
-          <input type="text" name="uname" required />
-          {renderErrorMessage("uname")}
+          <input
+            type="text"
+            placeholder="Username"
+            name="uname"
+            required
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          />
         </div>
         <div className="input-container">
           <label>Password </label>
-          <input type="password" name="pass" required />
-          {renderErrorMessage("pass")}
+          <input
+            type="password"
+            placeholder="Password"
+            name="pass"
+            required
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
         </div>
-        <Link to="/home" style={{ textDecoration: "none" }}>
+
         <div className="button-container">
-          <input type="submit" />
+          <input type="submit" disabled={isLoading} onClick={handleSubmit} />
         </div>
-        </Link>
       </form>
     </div>
   );
@@ -80,7 +78,7 @@ function Login() {
     <div className="login">
       <div className="login-form">
         <div className="title">Sign In</div>
-        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+        {renderForm}
       </div>
     </div>
   );

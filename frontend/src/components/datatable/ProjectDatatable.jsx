@@ -1,14 +1,28 @@
-import "./projectDatatable.scss"
+import "./projectDatatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../ProjectTableSource";
+import { userColumns } from "../../ProjectTableSource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllProjectsQuery } from "../../graphql/queries/getProjectsGraphql";
+import { apiCaller } from "../../utils/axios-request-caller";
 
 const ProjectDatatable = () => {
-  const [data, setData] = useState(userRows);
+  const [data, setData] = useState([]);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  useEffect(() => {
+    getAllProjects();
+  }, [data]);
+
+  const getAllProjects = async () => {
+    const graphqlQuery = {
+      operationName: "getAllProjects",
+      query: getAllProjectsQuery,
+      variables: {
+        test: "",
+      },
+    };
+    const res = await apiCaller(graphqlQuery, "");
+    setData(res.data.data.getAllProjects);
   };
 
   const actionColumn = [
@@ -22,12 +36,6 @@ const ProjectDatatable = () => {
             <Link to="/projects/test" style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Delete
-            </div>
           </div>
         );
       },
