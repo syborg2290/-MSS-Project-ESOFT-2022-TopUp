@@ -1,18 +1,17 @@
 export const userColumns = [
   {
     field: "nic",
-    headerName: "Employee",
-    width: 100,
+    headerName: "NIC",
+    width: 200,
   },
   {
     field: "employee",
-    headerName: "EmployeeName",
-    width: 230,
+    headerName: "Employee Name",
+    width: 200,
     renderCell: (params) => {
       return (
         <div className="cellWithImg">
-          {/* <img className="cellImg" src={params.row.img} alt="avatar" /> */}
-          {params.row.employee_name}
+          {params.row.firstName + " " + params.row.lastName}
         </div>
       );
     },
@@ -20,29 +19,41 @@ export const userColumns = [
 
   {
     field: "email",
-    headerName: "Employee",
-    width: 100,
+    headerName: "Email",
+    width: 200,
   },
 
   {
-    field: "age",
+    field: "dob",
     headerName: "Employee Age",
-    width: 100,
+    width: 150,
+    renderCell: (params) => {
+      return (
+        <div className="cellWithImg">
+          {new Date().getUTCFullYear() - new Date(params.row.dob).getUTCFullYear()}
+        </div>
+      );
+    },
   },
   {
     field: "gender",
-    headerName: "Employee Gender",
+    headerName: "Gender",
     width: 100,
   },
   {
-    field: "ContactNo",
+    field: "contactNo",
     headerName: "Contact Number",
-    width: 100,
+    width: 200,
   },
   {
     field: "department",
     headerName: "Department",
-    width: 100,
+    width: 150,
+  },
+  {
+    field: "position",
+    headerName: "Position",
+    width: 150,
   },
 ];
 

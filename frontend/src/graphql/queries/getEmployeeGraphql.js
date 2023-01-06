@@ -1,10 +1,24 @@
-export const getAssetMetaQuery = `
-    query findAssetById($id:String!){
-        findAssetById(id: $id) {
-            id
-            name
-            description
-            archived
-            fileName
-        }
-    }`;
+export const getAllEmployeesQuery =  `
+query getAllEmployees($test:String!){
+    getAllEmployees(test: $test){
+        id
+        nic
+        firstName
+        middleName
+        lastName
+        email
+        gender
+        dob
+        dateOfJoining
+        terminatedDate
+        deleted
+        contactNo
+        leaves
+        getLeaves
+        department
+        position
+        salary
+        emergencyContactNo
+        address
+    }
+}`;

@@ -1,15 +1,33 @@
 import "./employeedatatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../EmployeeTableSource";
+import { userColumns } from "../../EmployeeTableSource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllEmployeesQuery } from "../../graphql/queries/getEmployeeGraphql";
+import { apiCaller } from "../../utils/axios-request-caller";
 
 const EmployeeDatatable = () => {
-  const [data, setData] = useState(userRows);
+  const [data, setData] = useState([]);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  useEffect(() => {
+    getAllEmployees();
+  }, [data]);
+
+  const getAllEmployees = async () => {
+    const graphqlQuery = {
+      operationName: "getAllEmployees",
+      query: getAllEmployeesQuery,
+      variables: {
+        test: "",
+      },
+    };
+    const res = await apiCaller(graphqlQuery, "");
+    setData(res.data.data.getAllEmployees);
   };
+
+  // const handleDelete = (id) => {
+  //   setData(data.filter((item) => item.id !== id));
+  // };
 
   const actionColumn = [
     {
