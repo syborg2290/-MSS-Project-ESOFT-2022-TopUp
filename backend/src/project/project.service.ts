@@ -11,16 +11,11 @@ export class ProjectService {
     private projectRepository: Repository<Project>,
   ) {}
 
-  async createProject(project: ProjectCreateDTO): Promise<Object> {
+  async createProject(project: ProjectCreateDTO): Promise<Project> {
     try {
-      return new Promise(async (resolve, reject) => {
-        const projectEn = this.projectRepository.create(project);
-        resolve({
-          message: 'success',
-          status: HttpStatus.OK,
-          data: this.projectRepository.save(projectEn),
-        });
-      });
+      const projectEn = this.projectRepository.create(project);
+
+      return this.projectRepository.save(projectEn);
     } catch (error) {
       console.log(error);
       return error;
@@ -37,6 +32,15 @@ export class ProjectService {
           data: this.projectRepository.save(projectEn),
         });
       });
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  getAllProjects(): Promise<Project[]> {
+    try {
+      return this.projectRepository.find();
     } catch (error) {
       console.log(error);
       return error;

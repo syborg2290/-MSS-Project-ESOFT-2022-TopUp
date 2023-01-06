@@ -18,7 +18,7 @@ export class UserService {
 
   authenticateUser(username, password): Promise<any> {
     return new Promise(async (resolve, reject) => {
-      const user = this.userRepository.findOne({
+      const user = await this.userRepository.findOne({
         where: { username: username },
       });
       if (user) {
@@ -28,20 +28,20 @@ export class UserService {
           resolve({
             message: 'success',
             status: HttpStatus.OK,
-            data: { token },
+            token: token,
           });
         } else {
           reject({
             message: 'Wrong password!',
             status: HttpStatus.BAD_REQUEST,
-            data: null,
+            token: null,
           });
         }
       } else {
         reject({
           message: "User doesn't exist!",
           status: HttpStatus.BAD_REQUEST,
-          data: null,
+          token: null,
         });
       }
     });
@@ -76,7 +76,10 @@ export class UserService {
 
   getAllUser(): Promise<User[]> {
     try {
-      return this.userRepository.createQueryBuilder('user').leftJoinAndSelect('user.employee', 'employee').getMany();
+      return this.userRepository
+        .createQueryBuilder('user')
+        .leftJoinAndSelect('user.employee', 'employee')
+        .getMany();
     } catch (error) {
       console.log(error);
       return error;

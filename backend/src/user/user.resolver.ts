@@ -5,6 +5,7 @@ import { User } from './entity/user.entity';
 import { UserService } from './user.service';
 import { UserCreateDTO } from './dto/create-user.input';
 import { UserGetDTO } from './dto/get-user.dto';
+import { TokenGetDTO } from './dto/sign-user.dto';
 
 @Resolver(() => User)
 export class UserResolver {
@@ -59,7 +60,7 @@ export class UserResolver {
     }
   }
 
-  @Mutation(() => User, { name: 'signIn' })
+  @Mutation(() => TokenGetDTO, { name: 'signIn' })
   @UseFilters(new HttpExceptionFilter())
   async signIn(
     @Args('username') username: string,
@@ -67,28 +68,28 @@ export class UserResolver {
     @Context() context,
   ) {
     try {
-      let result: object = {};
+      let result: TokenGetDTO;
       let user: any = await this.userService.authenticateUser(
         username,
         password,
       );
-      if (user.data && user.data.status != HttpStatus.OK) {
+      if (user.token && user.status != HttpStatus.OK) {
         result = {
-          status: user.data.status,
-          data: user,
+          status: user.status,
+          message: user.message,
+          token: user.token,
         };
       } else {
         result = {
-          status: user.data.status,
-          data: {
-            user: user,
-          },
+          status: user.status,
+          message: user.message,
+          token: user.token,
         };
       }
 
       return result;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return error;
     }
   }

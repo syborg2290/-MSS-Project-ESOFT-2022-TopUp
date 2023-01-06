@@ -7,7 +7,13 @@ import { UserResolver } from './user.resolver';
 import { UserService } from './user.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User]), EmployeeModule, JwtModule],
+  imports: [
+    TypeOrmModule.forFeature([User]),
+    EmployeeModule,
+    JwtModule.register({
+      secret: '8348573485374fdshfes45834758374',
+    }),
+  ],
   providers: [UserService, UserResolver],
   exports: [UserService],
 })
