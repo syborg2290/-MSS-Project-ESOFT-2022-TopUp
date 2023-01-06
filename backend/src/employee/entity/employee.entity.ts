@@ -21,6 +21,9 @@ export class Employee {
   @Column()
   lastName: string;
   @Field({ nullable: false })
+  @Column()
+  nationality: string;
+  @Field({ nullable: false })
   @Column({ unique: true })
   email: string;
   @Field({ nullable: false })

@@ -17,6 +17,7 @@ export class EmployeeResolver {
     @Args('firstName') firstName: string,
     @Args('middleName') middleName: string,
     @Args('lastName') lastName: string,
+    @Args('nationality') nationality: string,
     @Args('email') email: string,
     @Args('gender') gender: string,
     @Args('dob') dob: string,
@@ -40,6 +41,7 @@ export class EmployeeResolver {
       employee.firstName = firstName;
       employee.middleName = middleName;
       employee.lastName = lastName;
+      employee.nationality = nationality;
       employee.email = email;
       employee.gender = gender;
       employee.dob = dob;

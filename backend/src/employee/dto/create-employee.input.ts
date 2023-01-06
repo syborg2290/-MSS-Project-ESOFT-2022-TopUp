@@ -20,6 +20,9 @@ export class EmployeeCreateDTO {
   lastName: string;
   @Field()
   @Column()
+  nationality: string;
+  @Field()
+  @Column()
   email: string;
   @Field()
   @Column()
