@@ -16,13 +16,11 @@ export const userColumns = [
       );
     },
   },
-
   {
-    field: "email",
-    headerName: "Email",
+    field: "nationality",
+    headerName: "Nationality",
     width: 200,
   },
-
   {
     field: "dob",
     headerName: "Employee Age",

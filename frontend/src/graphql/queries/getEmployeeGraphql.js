@@ -6,6 +6,7 @@ query getAllEmployees($test:String!){
         firstName
         middleName
         lastName
+        nationality
         email
         gender
         dob

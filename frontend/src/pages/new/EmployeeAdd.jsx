@@ -13,6 +13,7 @@ const EmployeeAdd = ({ inputs, title }) => {
   const [fname, setFname] = useState("");
   const [mname, setMname] = useState("");
   const [lname, setLname] = useState("");
+  const [nationality, setNationality] = useState("Nordic");
   const [nic, setNic] = useState("");
   const [email, setEmail] = useState("");
   const [gender, setGender] = useState("male");
@@ -56,6 +57,7 @@ const EmployeeAdd = ({ inputs, title }) => {
             firstName: fname,
             middleName: mname,
             lastName: lname,
+            nationality: nationality,
             email: email,
             gender: gender,
             dob: dob,
@@ -137,6 +139,18 @@ const EmployeeAdd = ({ inputs, title }) => {
                     setLname(e.target.value);
                   }}
                 ></input>
+              </div>
+              <div className="formInput">
+                <label>Nationality</label>
+                <select
+                  defaultValue={nationality}
+                  onChange={(e) => {
+                    setNationality(e.target.value);
+                  }}
+                >
+                  <option value="Nordic">Nordic</option>
+                  <option value="Australian">Australian</option>
+                </select>
               </div>
               <div className="formInput">
                 <label>NIC Of Employee</label>
