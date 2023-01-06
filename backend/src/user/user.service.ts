@@ -24,7 +24,7 @@ export class UserService {
       if (user) {
         const isMatch = await bcrypt.compare(password, (await user).password);
         if (isMatch) {
-          const token = this.jwtService.sign({ user: username });
+          const token = this.jwtService.sign({ id: (await user).id });
           resolve({
             message: 'success',
             status: HttpStatus.OK,

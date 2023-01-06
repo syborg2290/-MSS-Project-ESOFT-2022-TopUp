@@ -44,13 +44,13 @@ export class EmployeeCreateDTO {
   leaves: number;
   @Field()
   @Column()
+  getLeaves: number;
+  @Field()
+  @Column()
   department: string;
   @Field()
   @Column()
   position: string;
-  @Field()
-  @Column()
-  role: string;
   @Field()
   @Column()
   salary: number;

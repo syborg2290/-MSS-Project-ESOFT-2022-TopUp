@@ -1,5 +1,5 @@
 import { Resolver, Query, Args, Context, Mutation } from '@nestjs/graphql';
-import { UseFilters, HttpStatus } from '@nestjs/common';
+import { UseFilters, HttpStatus, BadRequestException } from '@nestjs/common';
 import { HttpExceptionFilter } from '../helper/exception.filter';
 import { Employee } from './entity/employee.entity';
 import { EmployeeService } from './employee.service';
@@ -12,27 +12,69 @@ export class EmployeeResolver {
   @Mutation(() => [Employee], { name: 'createEmployee' })
   @UseFilters(new HttpExceptionFilter())
   async createEmployee(
-    @Args('employee') employee: EmployeeCreateDTO,
+    @Args('id') id: string,
+    @Args('nic') nic: string,
+    @Args('firstName') firstName: string,
+    @Args('middleName') middleName: string,
+    @Args('lastName') lastName: string,
+    @Args('email') email: string,
+    @Args('gender') gender: string,
+    @Args('dob') dob: string,
+    @Args('dateOfJoining') dateOfJoining: string,
+    @Args('terminatedDate') terminatedDate: string,
+    @Args('deleted') deleted: boolean,
+    @Args('contactNo') contactNo: string,
+    @Args('leaves') leaves: number,
+    @Args('getLeaves') getLeaves: number,
+    @Args('department') department: string,
+    @Args('position') position: string,
+    @Args('salary') salary: number,
+    @Args('emergencyContactNo') emergencyContactNo: string,
+    @Args('address') address: string,
     @Context() context,
-  ) {
-    try {
-      let result: object = {};
-      let empRe: any = await this.employeeService.createEmployee(employee);
-      if (empRe.status != HttpStatus.OK) {
-        result = {
-          status: empRe.status,
-        };
+  ): Promise<Employee> {
+    return new Promise(async (resolve, reject) => {
+      const employee = new EmployeeCreateDTO();
+      employee.id = id;
+      employee.nic = nic;
+      employee.firstName = firstName;
+      employee.middleName = middleName;
+      employee.lastName = lastName;
+      employee.email = email;
+      employee.gender = gender;
+      employee.dob = dob;
+      employee.dateOfJoining = dateOfJoining;
+      employee.terminatedDate = terminatedDate;
+      employee.deleted = deleted;
+      employee.contactNo = contactNo;
+      employee.leaves = leaves;
+      employee.getLeaves = getLeaves;
+      employee.department = department;
+      employee.position = position;
+      employee.salary = salary;
+      employee.emergencyContactNo = emergencyContactNo;
+      employee.address = address;
+      const isEmployeeAlreadyExists =
+        await this.employeeService.getEmployeeByEmail(employee.email);
+      const isEmployeeContactNoAlreadyExists =
+        await this.employeeService.getEmployeeByContactNo(employee.contactNo);
+      if (isEmployeeAlreadyExists === null) {
+        if (isEmployeeContactNoAlreadyExists === null) {
+          resolve(await this.employeeService.createEmployee(employee));
+        } else {
+          reject(new BadRequestException('Contact No already used!'));
+        }
       } else {
-        result = {
-          status: empRe.status,
-        };
+        reject(new BadRequestException('Email already used!'));
       }
-
-      return result;
-    } catch (error) {
-      console.log(error);
-      return error;
-    }
+    }).then(
+      (res) => {
+        return res;
+      },
+      (err) => {
+        return err;
+      },
+    );
   }
 
   @Mutation(() => [Employee], { name: 'updateEmployee' })
