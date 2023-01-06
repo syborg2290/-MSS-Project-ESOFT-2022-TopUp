@@ -37,6 +37,15 @@ export class EmployeeService {
     }
   }
 
+  getAllEmployees(): Promise<Employee[]> {
+    try {
+      return this.employeeRepository.find();
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
   getEmployeeById(id: string): Promise<Employee> {
     try {
       return this.employeeRepository.findOne({

@@ -9,7 +9,7 @@ import { EmployeeCreateDTO } from './dto/create-employee.input';
 export class EmployeeResolver {
   constructor(private employeeService: EmployeeService) {}
 
-  @Mutation(() => [Employee], { name: 'createEmployee' })
+  @Mutation(() => Employee, { name: 'createEmployee' })
   @UseFilters(new HttpExceptionFilter())
   async createEmployee(
     @Args('id') id: string,
@@ -77,7 +77,7 @@ export class EmployeeResolver {
     );
   }
 
-  @Mutation(() => [Employee], { name: 'updateEmployee' })
+  @Mutation(() => Employee, { name: 'updateEmployee' })
   @UseFilters(new HttpExceptionFilter())
   async updateEmployee(
     @Args('employee') employee: EmployeeCreateDTO,
@@ -103,7 +103,19 @@ export class EmployeeResolver {
     }
   }
 
-  @Query(() => [Employee], { name: 'getEmployeeById' })
+  @Query(() => [Employee], { name: 'getAllEmployees' })
+  @UseFilters(new HttpExceptionFilter())
+  async getAllEmployees(@Args('test') test: string, @Context() context) {
+    try {
+      const usedBy = await this.employeeService.getAllEmployees();
+      return usedBy;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  @Query(() => Employee, { name: 'getEmployeeById' })
   @UseFilters(new HttpExceptionFilter())
   async getEmployeeById(@Args('id') id: string) {
     try {
@@ -115,7 +127,7 @@ export class EmployeeResolver {
     }
   }
 
-  @Query(() => [Employee], { name: 'getEmployeeByEmail' })
+  @Query(() => Employee, { name: 'getEmployeeByEmail' })
   @UseFilters(new HttpExceptionFilter())
   async getEmployeeByEmail(@Args('email') email: string) {
     try {
@@ -127,7 +139,7 @@ export class EmployeeResolver {
     }
   }
 
-  @Query(() => [Employee], { name: 'getUserByNic' })
+  @Query(() => Employee, { name: 'getUserByNic' })
   @UseFilters(new HttpExceptionFilter())
   async getUserByNic(@Args('nic') nic: string) {
     try {
@@ -139,7 +151,7 @@ export class EmployeeResolver {
     }
   }
 
-  @Query(() => [Employee], { name: 'getUserByContactNo' })
+  @Query(() => Employee, { name: 'getUserByContactNo' })
   @UseFilters(new HttpExceptionFilter())
   async getUserByContactNo(@Args('conNo') conNo: string) {
     try {
