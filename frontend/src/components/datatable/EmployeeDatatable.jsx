@@ -1,4 +1,4 @@
-import "./employeedatatable.scss"
+import "./employeedatatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../EmployeeTableSource";
 import { Link } from "react-router-dom";
@@ -22,12 +22,6 @@ const EmployeeDatatable = () => {
             <Link to="/employee/test" style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Delete
-            </div>
           </div>
         );
       },
@@ -36,7 +30,7 @@ const EmployeeDatatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-      Employee
+        Employee
         <Link to="/employee/new" className="link">
           Add New
         </Link>

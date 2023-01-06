@@ -9,12 +9,12 @@ export class Employee {
   @PrimaryColumn({ unique: true, nullable: false })
   id: string;
   @Field({ nullable: false })
-  @Column({ unique: true })
+  @Column()
   nic: string;
   @Field({ nullable: false })
   @Column()
   firstName: string;
-  @Field({ nullable: false })
+  @Field()
   @Column()
   middleName: string;
   @Field({ nullable: false })
@@ -41,18 +41,18 @@ export class Employee {
   @Field({ nullable: false })
   @Column({ unique: true })
   contactNo: string;
-  @Field({ nullable: false })
+  @Field({ nullable: false, defaultValue: 0 })
   @Column()
   leaves: number;
+  @Field({ defaultValue: 0 })
+  @Column()
+  getLeaves: number;
   @Field()
   @Column()
   department: string;
   @Field({ nullable: false })
   @Column()
   position: string;
-  @Field({ nullable: false })
-  @Column()
-  role: string;
   @Field({ nullable: false })
   @Column({ type: 'decimal', precision: 10, scale: 2, default: 0 })
   salary: number;

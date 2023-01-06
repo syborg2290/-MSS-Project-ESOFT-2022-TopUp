@@ -11,25 +11,10 @@ export class EmployeeService {
     private employeeRepository: Repository<Employee>,
   ) {}
 
-  async createEmployee(employee: EmployeeCreateDTO): Promise<Object> {
+  async createEmployee(employee: EmployeeCreateDTO): Promise<Employee> {
     try {
-      return new Promise(async(resolve, reject) => {
-        const isEmployeeAlreadyExists = await this.getEmployeeByEmail(employee.email);
-        if (isEmployeeAlreadyExists !== null) {
-          const empEn = this.employeeRepository.create(employee);
-          resolve({
-            message: 'success',
-            status: HttpStatus.OK,
-            data: this.employeeRepository.save(empEn),
-          });
-        } else {
-          reject({
-            message: 'Email already used!',
-            status: HttpStatus.BAD_REQUEST,
-            data: null,
-          });
-        }
-      });
+      const empEn = this.employeeRepository.create(employee);
+      return this.employeeRepository.save(empEn);
     } catch (error) {
       console.log(error);
       return error;

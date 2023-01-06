@@ -1,0 +1,46 @@
+export const createEmployeeQuery = `
+    mutation createEmployee(
+        $id:String!,
+        $nic:String!,
+        $firstName:String!,
+        $middleName:String!,
+        $lastName:String!,
+        $email:String!,
+        $gender:String!,
+        $dob:String!,
+        $dateOfJoining:String!,
+        $terminatedDate:String!,
+        $deleted:Boolean!,
+        $contactNo:String!,
+        $leaves:Float!,
+        $getLeaves:Float!,
+        $department:String!,
+        $position:String!,
+        $salary:Float!,
+        $emergencyContactNo:String!,
+        $address:String!
+        ){
+        createEmployee(
+            id:$id,
+            nic:$nic,
+            firstName:$firstName,
+            middleName:$middleName,
+            lastName:$lastName,
+            email:$email,
+            gender:$gender,
+            dob:$dob,
+            dateOfJoining:$dateOfJoining,
+            terminatedDate:$terminatedDate,
+            deleted:$deleted,
+            contactNo:$contactNo,
+            leaves:$leaves,
+            getLeaves:$getLeaves,
+            department:$department,
+            position:$position,
+            salary:$salary,
+            emergencyContactNo:$emergencyContactNo,
+            address:$address
+        ) {
+            nic
+        }
+    }`;
