@@ -1,14 +1,28 @@
 import "./prototypeDatatable.scss"
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../prototypeTableSource";
+import { userColumns } from "../../prototypeTableSource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllPrototypesQuery } from "../../graphql/queries/getPrototypesGraphql";
+import { apiCaller } from "../../utils/axios-request-caller";
 
 const PrototypeDatatable = () => {
-  const [data, setData] = useState(userRows);
+  const [data, setData] = useState([]);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  useEffect(() => {
+    getAllPrototypes();
+  }, [data]);
+
+  const getAllPrototypes = async () => {
+    const graphqlQuery = {
+      operationName: "getAllPrototypes",
+      query: getAllPrototypesQuery,
+      variables: {
+        test: "",
+      },
+    };
+    const res = await apiCaller(graphqlQuery, "");
+    setData(res.data.data.getAllPrototypes);
   };
 
   const actionColumn = [
@@ -22,12 +36,7 @@ const PrototypeDatatable = () => {
             <Link to="/prototype/test" style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Delete
-            </div>
+           
           </div>
         );
       },

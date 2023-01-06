@@ -1,38 +1,36 @@
 
 export const userColumns = [
-    { field: "id", headerName: "ID", width: 70 },
     {
-      field: "user",
-      headerName: "PrototypeName",
-      width: 230,
+      field: "name",
+      headerName: "Prototype Name",
+      width: 330,
       renderCell: (params) => {
         return (
           <div className="cellWithImg">
-            {/* <img className="cellImg" src={params.row.img} alt="avatar" /> */}
-            {params.row.username}
+            {params.row.name}
           </div>
         );
       },
     },
     {
-      field: "email",
-      headerName: "PrototypePrice",
+      field: "avg_duration",
+      headerName: "Estimation Duration",
       width: 230,
     },
   
     {
-      field: "age",
-      headerName: "MaterialQty",
-      width: 100,
+      field: "time_unit",
+      headerName: "Duration Unit",
+      width: 150,
     },
     {
-      field: "status",
-      headerName: "MaterilStatus",
+      field: "avg_cost",
+      headerName: "Estimation Cost(AD)",
       width: 160,
       renderCell: (params) => {
         return (
-          <div className={`cellWithStatus ${params.row.status}`}>
-            {params.row.status}
+          <div className={`cellWithStatus ${params.row.avg_cost}`}>
+            {params.row.avg_cost}
           </div>
         );
       },

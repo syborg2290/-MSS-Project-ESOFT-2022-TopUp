@@ -1,14 +1,28 @@
-import "./materialsDatatable.scss"
+import "./materialsDatatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../MaterialsTablesource";
+import { userColumns } from "../../MaterialsTablesource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllMaterialsQuery } from "../../graphql/queries/getMaterialsGraphql";
+import { apiCaller } from "../../utils/axios-request-caller";
 
 const MaterialsDatatable = () => {
-  const [data, setData] = useState(userRows);
+  const [data, setData] = useState([]);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  useEffect(() => {
+    getAllMaterials();
+  }, [data]);
+
+  const getAllMaterials = async () => {
+    const graphqlQuery = {
+      operationName: "getAllMaterials",
+      query: getAllMaterialsQuery,
+      variables: {
+        test: "",
+      },
+    };
+    const res = await apiCaller(graphqlQuery, "");
+    setData(res.data.data.getAllMaterials);
   };
 
   const actionColumn = [
@@ -22,12 +36,6 @@ const MaterialsDatatable = () => {
             <Link to="/materials/test" style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Delete
-            </div>
           </div>
         );
       },
@@ -36,7 +44,7 @@ const MaterialsDatatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-      Materials
+        Materials
         <Link to="/materials/new" className="link">
           Add New
         </Link>
