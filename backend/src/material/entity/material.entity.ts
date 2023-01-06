@@ -9,8 +9,11 @@ export class Material {
   @PrimaryColumn({ unique: true, nullable: false })
   id: string;
   @Field({ nullable: false })
-  @Column({ unique: true })
+  @Column()
   name: string;
+  @Field()
+  @Column()
+  description: string;
   @Field({ nullable: false })
   @Column()
   measurement_unit: string;

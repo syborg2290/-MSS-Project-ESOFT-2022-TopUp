@@ -11,16 +11,11 @@ export class MaterialService {
     private materialRepository: Repository<Material>,
   ) {}
 
-  async createMaterial(material: MaterialCreateDTO): Promise<Object> {
+  async createMaterial(material: MaterialCreateDTO): Promise<Material> {
     try {
-      return new Promise((resolve, reject) => {
-        const materialEn = this.materialRepository.create(material);
-        resolve({
-          message: 'success',
-          status: HttpStatus.OK,
-          data: this.materialRepository.save(materialEn),
-        });
-      });
+      const materialEn = this.materialRepository.create(material);
+
+      return this.materialRepository.save(materialEn);
     } catch (error) {
       console.log(error);
       return error;
@@ -37,6 +32,15 @@ export class MaterialService {
           data: this.materialRepository.save(prototypeEn),
         });
       });
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  getAllMaterials(): Promise<Material[]> {
+    try {
+      return this.materialRepository.find();
     } catch (error) {
       console.log(error);
       return error;

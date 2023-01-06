@@ -11,16 +11,11 @@ export class PrototypeService {
     private prototypeRepository: Repository<Prototype>,
   ) {}
 
-  async createPrototype(prototype: PrototypeCreateDTO): Promise<Object> {
+  async createPrototype(prototype: PrototypeCreateDTO): Promise<Prototype> {
     try {
-      return new Promise((resolve, reject) => {
-        const prototypeEn = this.prototypeRepository.create(prototype);
-        resolve({
-          message: 'success',
-          status: HttpStatus.OK,
-          data: this.prototypeRepository.save(prototypeEn),
-        });
-      });
+      const prototypeEn = this.prototypeRepository.create(prototype);
+
+      return this.prototypeRepository.save(prototypeEn);
     } catch (error) {
       console.log(error);
       return error;
@@ -37,6 +32,15 @@ export class PrototypeService {
           data: this.prototypeRepository.save(prototypeEn),
         });
       });
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  getAllPrototypes(): Promise<Prototype[]> {
+    try {
+      return this.prototypeRepository.find();
     } catch (error) {
       console.log(error);
       return error;

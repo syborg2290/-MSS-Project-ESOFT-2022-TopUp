@@ -11,6 +11,9 @@ export class MaterialCreateDTO {
   name: string;
   @Field()
   @Column()
+  description: string;
+  @Field()
+  @Column()
   measurement_unit: string;
   @Field()
   @Column()
