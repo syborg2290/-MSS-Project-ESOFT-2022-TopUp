@@ -24,6 +24,7 @@ const EmployeeAdd = ({ inputs, title }) => {
   const [address, setAddress] = useState("");
   const [position, setPosition] = useState("");
   const [salary, setSalary] = useState(0);
+  const [previousEx, setPreviousEx] = useState(0);
   const [leaves, setLeaves] = useState(0);
   const [department, setDepartment] = useState("salesMarketing");
 
@@ -61,6 +62,7 @@ const EmployeeAdd = ({ inputs, title }) => {
             email: email,
             gender: gender,
             dob: dob,
+            previous_experience_years:previousEx,
             dateOfJoining: dateOfJoinning,
             terminatedDate: "",
             deleted: false,
@@ -198,6 +200,17 @@ const EmployeeAdd = ({ inputs, title }) => {
                 ></input>
               </div>
               <div className="formInput">
+                <label>Previous Experience Years</label>
+                <input
+                  type="number"
+                  placeholder="Previous Experience Years"
+                  required={true}
+                  onChange={(e) => {
+                    setPreviousEx(parseInt(e.target.value));
+                  }}
+                ></input>
+              </div>
+              <div className="formInput">
                 <label>Date Of Joining</label>
                 <input
                   type="date"
@@ -255,7 +268,9 @@ const EmployeeAdd = ({ inputs, title }) => {
                   <option value="it">IT</option>
                   <option value="hr">HR</option>
                   <option value="rd">R&D</option>
+                  <option value="engineeringDesign">Engineering Design</option>
                   <option value="engineering">Engineering</option>
+                  <option value="factoryManagement">Factory Management</option>
                 </select>
               </div>
               <div className="formInput">
@@ -281,10 +296,10 @@ const EmployeeAdd = ({ inputs, title }) => {
                 ></input>
               </div>
               <div className="formInput">
-                <label>Salary(USD)</label>
+                <label>Salary(AD)/Annual</label>
                 <input
                   type="number"
-                  placeholder="Salary(USD)"
+                  placeholder="Salary(AD)"
                   required={true}
                   onChange={(e) => {
                     setSalary(parseInt(e.target.value));

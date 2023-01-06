@@ -1,14 +1,28 @@
 import "./Userdatatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../Userdatatablesource";
+import { userColumns } from "../../Userdatatablesource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllUsersQuery } from "../../graphql/queries/getUsersGraphql";
+import { apiCaller } from "../../utils/axios-request-caller";
 
 const UserDatatable = () => {
-  const [data, setData] = useState(userRows);
+  const [data, setData] = useState([]);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  useEffect(() => {
+    getAllUsers();
+  }, [data]);
+
+  const getAllUsers = async () => {
+    const graphqlQuery = {
+      operationName: "getAllUsers",
+      query: getAllUsersQuery,
+      variables: {
+        test: "",
+      },
+    };
+    const res = await apiCaller(graphqlQuery, "");
+    setData(res.data.data.getAllUsers);
   };
 
   const actionColumn = [
@@ -22,12 +36,6 @@ const UserDatatable = () => {
             <Link to="/users/test" style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Delete
-            </div>
           </div>
         );
       },

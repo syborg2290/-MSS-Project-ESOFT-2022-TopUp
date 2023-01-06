@@ -4,6 +4,9 @@ const endpoint = `http://${process.env.REACT_APP_backend_host}:${process.env.REA
 
 export const apiCaller = async (graphqlQuery, token) => {
   try {
+
+    // console.log(graphqlQuery)
+
     const headers = {
       "content-type": "application/json",
       Authorization: token,

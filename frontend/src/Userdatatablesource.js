@@ -1,9 +1,7 @@
-
 export const userColumns = [
-  { field: "id", headerName: "ID", width: 70 },
   {
-    field: "user",
-    headerName: "User",
+    field: "username",
+    headerName: "Username",
     width: 230,
     renderCell: (params) => {
       return (
@@ -15,30 +13,39 @@ export const userColumns = [
     },
   },
   {
-    field: "email",
-    headerName: "Email",
+    field: "role",
+    headerName: "Role",
     width: 230,
   },
-
   {
-    field: "age",
-    headerName: "Age",
-    width: 100,
+    field: "contactNo",
+    headerName: "Contact No",
+    width: 230,
+    renderCell: (params) => {
+      return <div className="cellWithImg">{params.row.employee.contactNo}</div>;
+    },
   },
   {
-    field: "status",
-    headerName: "Status",
-    width: 160,
+    field: "department",
+    headerName: "Department",
+    width: 150,
     renderCell: (params) => {
       return (
-        <div className={`cellWithStatus ${params.row.status}`}>
-          {params.row.status}
+        <div className="cellWithImg">
+          {params.row.employee.department.toUpperCase()}
         </div>
       );
     },
   },
+  {
+    field: "position",
+    headerName: "Position",
+    width: 230,
+    renderCell: (params) => {
+      return <div className="cellWithImg">{params.row.employee.position}</div>;
+    },
+  },
 ];
-
 
 //temporary data
 export const userRows = [

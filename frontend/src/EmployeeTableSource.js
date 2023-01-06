@@ -28,7 +28,8 @@ export const userColumns = [
     renderCell: (params) => {
       return (
         <div className="cellWithImg">
-          {new Date().getUTCFullYear() - new Date(params.row.dob).getUTCFullYear()}
+          {new Date().getUTCFullYear() -
+            new Date(params.row.dob).getUTCFullYear()}
         </div>
       );
     },
@@ -47,6 +48,11 @@ export const userColumns = [
     field: "department",
     headerName: "Department",
     width: 150,
+    renderCell: (params) => {
+      return (
+        <div className="cellWithImg">{params.row.department.toUpperCase()}</div>
+      );
+    },
   },
   {
     field: "position",

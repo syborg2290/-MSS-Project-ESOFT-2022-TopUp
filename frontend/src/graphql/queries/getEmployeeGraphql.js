@@ -10,6 +10,7 @@ query getAllEmployees($test:String!){
         email
         gender
         dob
+        previous_experience_years
         dateOfJoining
         terminatedDate
         deleted
