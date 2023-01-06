@@ -6,7 +6,7 @@ import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
 @ObjectType()
 export class User {
   @Field({ nullable: false })
-  @PrimaryColumn({ unique: true, nullable: false })
+  @PrimaryColumn({ unique: true })
   id: string;
   @Field({ nullable: false })
   @Column({ unique: true })
@@ -20,5 +20,9 @@ export class User {
 
   @OneToOne(() => Employee)
   @JoinColumn()
-  emaployee: Employee;
+  employee: Employee;
+
+  @Field({ nullable: false })
+  @Column()
+  role: string;
 }

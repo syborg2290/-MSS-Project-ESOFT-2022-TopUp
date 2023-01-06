@@ -15,15 +15,21 @@ export class Task {
   @Field({ nullable: false })
   @Column({ unique: true })
   title: string;
+  @Field()
+  @Column()
+  description: string;
   @Field({ nullable: false })
   @Column({ default: 'pending' })
   taskstatus: string;
+  @Field({ nullable: false })
+  @Column({ default: 0 })
+  progress: number;
   @Field()
   @Column()
   supervisor: string;
   @Field()
   @Column()
-  induvidualOrUnit: Boolean;
+  induvidualOrUnit: string;
   @ManyToOne(() => Project, (project) => project.tasks)
   project: Project;
   @ManyToOne(() => Unit, (unit) => unit.tasks)
@@ -34,10 +40,10 @@ export class Task {
   prototype: Prototype;
   @Field()
   @Column()
-  start_date: string;
+  start_time: string;
   @Field()
   @Column()
-  finished_date: string;
+  finished_time: string;
   @OneToMany(() => ExtraMaterial, (exMat) => exMat.task)
   extra_meterial: ExtraMaterial[];
 }

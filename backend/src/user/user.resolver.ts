@@ -4,35 +4,62 @@ import { HttpExceptionFilter } from '../helper/exception.filter';
 import { User } from './entity/user.entity';
 import { UserService } from './user.service';
 import { UserCreateDTO } from './dto/create-user.input';
+import { UserGetDTO } from './dto/get-user.dto';
 
 @Resolver(() => User)
 export class UserResolver {
   constructor(private userService: UserService) {}
 
-  @Mutation(() => [User], { name: 'createUser' })
+  @Mutation(() => User, { name: 'createUser' })
   @UseFilters(new HttpExceptionFilter())
-  async createUser(@Args('user') user: UserCreateDTO, @Context() context) {
-    try {
-      let result: object = {};
-      let userRe: any = await this.userService.createUser(user);
-      if (userRe.status != HttpStatus.OK) {
-        result = {
-          status: userRe.status,
-        };
-      } else {
-        result = {
-          status: userRe.status,
-        };
-      }
+  async createUser(
+    @Args('id') id: string,
+    @Args('username') username: string,
+    @Args('password') password: string,
+    @Args('employeeId') nic: string,
+    @Args('role') role: string,
+    @Context() context,
+  ): Promise<User> {
+    return new Promise(async (resolve, reject) => {
+      const user = new UserCreateDTO();
+      user.id = id;
+      user.password = password;
+      user.role = role;
+      user.username = username;
+      user.employeeId = nic;
 
-      return result;
+      resolve(await this.userService.createUser(user));
+    }).then(
+      (res) => {
+        return res;
+      },
+      (err) => {
+        return err;
+      },
+    );
+  }
+
+  @Query(() => [UserGetDTO], { name: 'getAllUsers' })
+  @UseFilters(new HttpExceptionFilter())
+  async getAllUsers(@Args('test') test: string) {
+    try {
+      return (await this.userService.getAllUser()).map((item) => {
+        const obj: UserGetDTO = {
+          id: item.id,
+          username: item.username,
+          email: item.email,
+          role: item.role,
+          employee: item.employee,
+        };
+        return obj;
+      });
     } catch (error) {
       console.log(error);
       return error;
     }
   }
 
-  @Mutation(() => [User], { name: 'signIn' })
+  @Mutation(() => User, { name: 'signIn' })
   @UseFilters(new HttpExceptionFilter())
   async signIn(
     @Args('username') username: string,
@@ -66,7 +93,7 @@ export class UserResolver {
     }
   }
 
-  @Query(() => [User], { name: 'getUserById' })
+  @Query(() => User, { name: 'getUserById' })
   @UseFilters(new HttpExceptionFilter())
   async getUserById(@Args('id') id: string) {
     try {
@@ -78,7 +105,7 @@ export class UserResolver {
     }
   }
 
-  @Query(() => [User], { name: 'getUserByEmail' })
+  @Query(() => User, { name: 'getUserByEmail' })
   @UseFilters(new HttpExceptionFilter())
   async getUserByEmail(@Args('email') email: string) {
     try {

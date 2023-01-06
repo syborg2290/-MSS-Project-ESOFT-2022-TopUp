@@ -36,15 +36,17 @@ export class TaskService {
           const taskDbObj = {
             id: task.id,
             title: task.title,
+            description:task.description,
             taskstatus: task.taskstatus,
+            progress: task.progress,
             supervisor: task.supervisor,
             induvidualOrUnit: task.induvidualOrUnit,
             project: project,
             unit: unit,
             employee: employee,
             prototype: prototype,
-            start_date: task.start_date,
-            finished_date: task.finished_date,
+            start_time: task.start_time,
+            finished_time: task.finished_time,
           };
           const taskEn = this.taskRepository.create(taskDbObj);
           resolve({
@@ -73,15 +75,17 @@ export class TaskService {
           const taskDbObj = {
             id: task.id,
             title: task.title,
+            description:task.description,
             taskstatus: task.taskstatus,
+            progress: task.progress,
             supervisor: task.supervisor,
             induvidualOrUnit: task.induvidualOrUnit,
             project: project,
             unit: unit,
             employee: employee,
             prototype: prototype,
-            start_date: task.start_date,
-            finished_date: task.finished_date,
+            start_time: task.start_time,
+            finished_time: task.finished_time,
           };
           const taskEn = this.taskRepository.create(taskDbObj);
           resolve({

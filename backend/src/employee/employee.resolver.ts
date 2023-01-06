@@ -21,6 +21,7 @@ export class EmployeeResolver {
     @Args('email') email: string,
     @Args('gender') gender: string,
     @Args('dob') dob: string,
+    @Args('previous_experience_years') previous_experience_years:number,
     @Args('dateOfJoining') dateOfJoining: string,
     @Args('terminatedDate') terminatedDate: string,
     @Args('deleted') deleted: boolean,
@@ -45,6 +46,7 @@ export class EmployeeResolver {
       employee.email = email;
       employee.gender = gender;
       employee.dob = dob;
+      employee.previous_experience_years = previous_experience_years;
       employee.dateOfJoining = dateOfJoining;
       employee.terminatedDate = terminatedDate;
       employee.deleted = deleted;

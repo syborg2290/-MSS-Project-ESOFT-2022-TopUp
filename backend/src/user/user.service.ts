@@ -47,42 +47,36 @@ export class UserService {
     });
   }
 
-  async createUser(user: UserCreateDTO): Promise<Object> {
+  async createUser(user: UserCreateDTO): Promise<User> {
     try {
-      return new Promise(async (resolve, reject) => {
-        const isUserAleradyExists = this.getUserByEmail(user.email);
-        if (isUserAleradyExists !== null) {
-          const employee = await this.employeeService.getEmployeeById(
-            user.emaployeeId,
-          );
-          if (employee) {
-            const saltOrRounds = 10;
-            const hashedPassword = await bcrypt.hash(
-              user.password,
-              saltOrRounds,
-            );
-            const userDbObj = {
-              id: user.id,
-              username: user.username,
-              email: user.email,
-              password: hashedPassword,
-              emaployee: employee,
-            };
-            const userEn = this.userRepository.create(userDbObj);
-            resolve({
-              message: 'success',
-              status: HttpStatus.OK,
-              data: this.userRepository.save(userEn),
-            });
-          }
-        } else {
-          reject({
-            message: 'Email already used!',
-            status: HttpStatus.BAD_REQUEST,
-            data: null,
-          });
-        }
-      });
+      const employee = await this.employeeService.getEmployeeByNic(
+        user.employeeId,
+      );
+
+      if (employee) {
+        const saltOrRounds = 10;
+        const hashedPassword = await bcrypt.hash(user.password, saltOrRounds);
+        const userDbObj = {
+          id: user.id,
+          username: user.username,
+          email: employee.email,
+          password: hashedPassword,
+          employee: employee,
+          role: user.role,
+        };
+        const userEn = this.userRepository.create(userDbObj);
+
+        return this.userRepository.save(userEn);
+      }
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  getAllUser(): Promise<User[]> {
+    try {
+      return this.userRepository.createQueryBuilder('user').leftJoinAndSelect('user.employee', 'employee').getMany();
     } catch (error) {
       console.log(error);
       return error;
@@ -92,6 +86,8 @@ export class UserService {
   getUserById(id: string): Promise<User> {
     try {
       return this.userRepository.findOne({
+        relations: ['employee'],
+        loadRelationIds: true,
         where: { id: id },
       });
     } catch (error) {
@@ -103,6 +99,8 @@ export class UserService {
   getUserByEmail(email: string): Promise<User> {
     try {
       return this.userRepository.findOne({
+        relations: ['employee'],
+        loadRelationIds: true,
         where: { email: email },
       });
     } catch (error) {
@@ -114,6 +112,8 @@ export class UserService {
   getUserByUsername(username: string): Promise<User> {
     try {
       return this.userRepository.findOne({
+        relations: ['employee'],
+        loadRelationIds: true,
         where: { username: username },
       });
     } catch (error) {

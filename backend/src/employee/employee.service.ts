@@ -57,10 +57,10 @@ export class EmployeeService {
     }
   }
 
-  getEmployeeByNic(contactNo: string): Promise<Employee> {
+  getEmployeeByNic(nic: string): Promise<Employee> {
     try {
       return this.employeeRepository.findOne({
-        where: { contactNo: contactNo },
+        where: { nic: nic },
       });
     } catch (error) {
       console.log(error);

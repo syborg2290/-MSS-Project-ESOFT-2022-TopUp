@@ -32,6 +32,9 @@ export class EmployeeCreateDTO {
   dob: string;
   @Field()
   @Column()
+  previous_experience_years: number;
+  @Field()
+  @Column()
   dateOfJoining: string;
   @Field()
   @Column()

@@ -11,13 +11,19 @@ export class TaskCreateDTO {
   title: string;
   @Field()
   @Column()
+  description: string;
+  @Field()
+  @Column()
   taskstatus: string;
+  @Field()
+  @Column()
+  progress: number;
   @Field()
   @Column()
   supervisor: string;
   @Field()
   @Column()
-  induvidualOrUnit: Boolean;
+  induvidualOrUnit: string;
   @Field()
   @Column()
   project: string;
@@ -32,8 +38,8 @@ export class TaskCreateDTO {
   prototype: string;
   @Field()
   @Column()
-  start_date: string;
+  start_time: string;
   @Field()
   @Column()
-  finished_date: string;     
+  finished_time: string;     
 }

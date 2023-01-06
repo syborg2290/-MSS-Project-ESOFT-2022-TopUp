@@ -33,6 +33,9 @@ export class Employee {
   @Column()
   dob: string;
   @Field({ nullable: false })
+  @Column({default:0})
+  previous_experience_years: number;
+  @Field({ nullable: false })
   @Column()
   dateOfJoining: string;
   @Field({ nullable: false })
