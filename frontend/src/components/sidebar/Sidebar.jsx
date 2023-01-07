@@ -99,6 +99,12 @@ const Sidebar = () => {
             <span>Sub Inventory</span>
           </li>
           </Link>
+          <Link to="/inventoryrequest" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" />
+              <span>Inventroy Request</span>
+            </li>
+          </Link>
           <li>
             <NotificationsNoneIcon className="icon" />
             <span>Notifications</span>
