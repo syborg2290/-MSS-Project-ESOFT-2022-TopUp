@@ -1,10 +1,12 @@
+import { color } from "@mui/system";
+
 export const userColumns = [
   {
     field: "project",
     headerName: "Project",
     width: 230,
     renderCell: (params) => {
-      return <div className="cellWithImg">{params.row.project.title}</div>
+      return <div className="cellWithImg">{params.row.project.title}</div>;
     },
   },
   {
@@ -20,13 +22,41 @@ export const userColumns = [
     headerName: "Task Status",
     width: 130,
     renderCell: (params) => {
-      return <div className="cellWithImg">{params.row.task.taskstatus}</div>;
+      return (
+        <div
+          style={
+            params.row.task.taskstatus === "pending"
+              ? {
+                  backgroundColor: "red",
+                  color: "white",
+                  fontWeight: "bold",
+                  padding: "5px",
+                }
+              : params.row.task.taskstatus === "onprogress"
+              ? {
+                  backgroundColor: "yellow",
+                  color: "white",
+                  fontWeight: "bold",
+                  padding: "5px",
+                }
+              : {
+                  backgroundColor: "green",
+                  color: "white",
+                  fontWeight: "bold",
+                  padding: "5px",
+                }
+          }
+          className="cellWithImg"
+        >
+          {params.row.task.taskstatus}
+        </div>
+      );
     },
   },
 
   {
     field: "progress",
-    headerName: "Task Progress",
+    headerName: "Task Progress(%)",
     width: 130,
     renderCell: (params) => {
       return <div className="cellWithImg">{params.row.task.progress}</div>;
