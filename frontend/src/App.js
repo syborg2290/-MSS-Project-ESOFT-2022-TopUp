@@ -38,6 +38,7 @@ import SubInventoryAdd from "./pages/new/SubInventoryAdd";
 import InventoryRequesList from "./pages/list/InventoryRequesList";
 import InventoryRwqueestView from "./pages/single/InventoryRwqueestView";
 import InventroyRequestAdd from "./pages/new/InventroyRequestAdd";
+import RequestRowMaterials from "./pages/single/RequestRowMaterials";
 
 function App() {
  
@@ -75,6 +76,10 @@ function App() {
               <Route
                 path="new"
                 element={<TaskAdd title="Add new Task"/>}
+              />
+               <Route
+                path="rowmaterials"
+                element={<RequestRowMaterials/>}
               />
             </Route>
             <Route path="warehouse">
@@ -135,6 +140,7 @@ function App() {
             <Route path="subinventory">
               <Route index element={<SubInvenotryList/>} />
               <Route path=":subinventoryID" element={<SubInventoryView/>} />
+              <Route path=":rowmaterialID" element={<RequestRowMaterials/>} />
               <Route
                 path="new"
                 element={<SubInventoryAdd title="Add new subInventory"/>}/>

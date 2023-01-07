@@ -22,6 +22,9 @@ const TaskDatatable = () => {
             <Link to="/tasks/test" style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
+              <Link to="/tasks/rowmaterials" style={{ textDecoration: "none" }}>
+              <div className="viewButton">RequestMaterials</div>
+            </Link>
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
