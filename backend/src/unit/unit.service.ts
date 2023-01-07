@@ -11,16 +11,10 @@ export class UnitService {
     private unitRepository: Repository<Unit>,
   ) {}
 
-  async createUnit(unit: UnitCreateDTO): Promise<Object> {
+  async createUnit(unit: UnitCreateDTO): Promise<Unit> {
     try {
-      return new Promise((resolve, reject) => {
-        const unitEn = this.unitRepository.create(unit);
-        resolve({
-          message: 'success',
-          status: HttpStatus.OK,
-          data: this.unitRepository.save(unitEn),
-        });
-      });
+      const unitEn = this.unitRepository.create(unit);
+      return this.unitRepository.save(unitEn);
     } catch (error) {
       console.log(error);
       return error;
@@ -37,6 +31,15 @@ export class UnitService {
           data: this.unitRepository.save(unitEn),
         });
       });
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  getAllUnits(): Promise<Unit[]> {
+    try {
+      return this.unitRepository.find();
     } catch (error) {
       console.log(error);
       return error;
