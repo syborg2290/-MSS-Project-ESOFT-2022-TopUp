@@ -11,47 +11,47 @@ const List = () => {
   const rows = [
     {
       id: 1143155,
-      product: "Acer Nitro 5",
+      product: "Tharaka",
       customer: "John Smith",
       date: "1 March",
       amount: 785,
-      method: "Cash on Delivery",
+      method: "pending",
       status: "Approved",
     },
     {
       id: 2235235,
-      product: "Playstation 5",
+      product: "kassun",
       customer: "Michael Doe",
       date: "1 March",
       amount: 900,
-      method: "Online Payment",
+      method: "pending",
       status: "Pending",
     },
     {
       id: 2342353,
-      product: "Redragon S101",
+      product: "John",
       customer: "John Smith",
       date: "1 March",
       amount: 35,
-      method: "Cash on Delivery",
+      method: "pending",
       status: "Pending",
     },
     {
       id: 2357741,
-      product: "Razer Blade 15",
-      customer: "Jane Smith",
+      product: "John",
+      customer: "John Smith",
       date: "1 March",
       amount: 920,
-      method: "Online",
+      method: "pending",
       status: "Approved",
     },
     {
       id: 2342355,
-      product: "ASUS ROG Strix",
+      product: "Harold",
       customer: "Harold Carol",
       date: "1 March",
       amount: 2000,
-      method: "Online",
+      method: "pending",
       status: "Pending",
     },
   ];
@@ -60,12 +60,12 @@ const List = () => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell className="tableCell">Tracking ID</TableCell>
-            <TableCell className="tableCell">Product</TableCell>
-            <TableCell className="tableCell">Customer</TableCell>
+            <TableCell className="tableCell">ID</TableCell>
+            <TableCell className="tableCell">Name</TableCell>
+            <TableCell className="tableCell">Description</TableCell>
             <TableCell className="tableCell">Date</TableCell>
-            <TableCell className="tableCell">Amount</TableCell>
-            <TableCell className="tableCell">Payment Method</TableCell>
+            <TableCell className="tableCell">Cost</TableCell>
+            <TableCell className="tableCell">Progress</TableCell>
             <TableCell className="tableCell">Status</TableCell>
           </TableRow>
         </TableHead>

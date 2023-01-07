@@ -13,17 +13,17 @@ const InventoryRwqueestView = () => {
         <div className="top">
           <div className="left">
             <div className="editButton">Edit</div>
-            <h1 className="title">Information</h1>
+            <h1 className="title">Inventory Information</h1>
             <div className="item">
               <div className="details">
-                <h1 className="itemTitle">Inventory Request</h1>
+                <h1 className="itemTitle">Inventory </h1>
                 <div className="detailItem">
                   <span className="itemKey">Email:</span>
-                  <span className="itemValue">Macbook@gmail.com</span>
+                  <span className="itemValue">Locks</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Phone:</span>
-                  <span className="itemValue">+94 2345 67 89</span>
+                  <span className="itemValue">99</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Age:</span>

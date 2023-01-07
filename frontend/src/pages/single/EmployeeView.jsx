@@ -13,20 +13,20 @@ const EmployeeView = () => {
         <div className="top">
           <div className="left">
             <div className="editButton">Edit</div>
-            <h1 className="title">Information</h1>
+            <h1 className="title">Employee Information</h1>
             <div className="item">
               <div className="details">
                 <h1 className="itemTitle">Employee</h1>
                 <div className="detailItem">
-                  <span className="itemKey">Email:</span>
+                  <span className="itemKey">Employee Email:</span>
                   <span className="itemValue">Macbook@gmail.com</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Phone:</span>
+                  <span className="itemKey">Employee Phone:</span>
                   <span className="itemValue">+94 2345 67 89</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Age:</span>
+                  <span className="itemKey">Employee Age:</span>
                   <span className="itemValue">
                    24
                   </span>
