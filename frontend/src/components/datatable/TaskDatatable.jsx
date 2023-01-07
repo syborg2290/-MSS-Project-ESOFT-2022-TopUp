@@ -1,14 +1,29 @@
 import "./taskDatatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../tasktablesource";
+import { userColumns } from "../../tasktablesource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllTasksQuery } from "../../graphql/queries/getTasksGraphql";
+import { apiCaller } from "../../utils/axios-request-caller";
 
 const TaskDatatable = () => {
-  const [data, setData] = useState(userRows);
+  const [data, setData] = useState([]);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  useEffect(() => {
+    getAllTasks();
+  }, [data]);
+
+  const getAllTasks = async () => {
+    const graphqlQuery = {
+      operationName: "getAllTasks",
+      query: getAllTasksQuery,
+      variables: {
+        test: "",
+      },
+    };
+    const res = await apiCaller(graphqlQuery, "");
+    console.log(res);
+    setData(res.data.data.getAllTasks);
   };
 
   const actionColumn = [
@@ -22,12 +37,6 @@ const TaskDatatable = () => {
             <Link to="/tasks/test" style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Delete
-            </div>
           </div>
         );
       },

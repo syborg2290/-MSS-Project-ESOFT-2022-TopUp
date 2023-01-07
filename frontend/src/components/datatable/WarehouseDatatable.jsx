@@ -1,14 +1,28 @@
-import "./warehouseDatatable.scss"
+import "./warehouseDatatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../WarehouseDatatablesource";
+import { userColumns } from "../../WarehouseDatatablesource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllWarehouseInventroiesQuery } from "../../graphql/queries/getWarehouseInventoriesGraphql";
+import { apiCaller } from "../../utils/axios-request-caller";
 
 const WarehouseDatatable = () => {
-  const [data, setData] = useState(userRows);
+  const [data, setData] = useState([]);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  useEffect(() => {
+    getAllWarehouse();
+  }, [data]);
+
+  const getAllWarehouse = async () => {
+    const graphqlQuery = {
+      operationName: "getAllWarehouse",
+      query: getAllWarehouseInventroiesQuery,
+      variables: {
+        test: "",
+      },
+    };
+    const res = await apiCaller(graphqlQuery, "");
+    setData(res.data.data.getAllWarehouse);
   };
 
   const actionColumn = [
@@ -22,12 +36,6 @@ const WarehouseDatatable = () => {
             <Link to="/warehouse/test" style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Delete
-            </div>
           </div>
         );
       },

@@ -61,6 +61,12 @@ const Sidebar = () => {
               <span>Task</span>
             </li>
           </Link>
+          <Link to="/subinventory" style={{ textDecoration: "none" }}>
+            <li>
+              <InsertChartIcon className="icon" />
+              <span>Sub Inventory</span>
+            </li>
+          </Link>
           <Link to="/warehouse" style={{ textDecoration: "none" }}>
             <li>
               <InsertChartIcon className="icon" />
@@ -83,6 +89,12 @@ const Sidebar = () => {
             <li>
               <PersonOutlineIcon className="icon" />
               <span>Units Members</span>
+            </li>
+          </Link>
+          <Link to="/inventoryrequest" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" />
+              <span>Inventroy Requests</span>
             </li>
           </Link>
           <p className="title">SERVICE</p>

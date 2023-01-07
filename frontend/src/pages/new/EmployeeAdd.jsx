@@ -62,7 +62,7 @@ const EmployeeAdd = ({ inputs, title }) => {
             email: email,
             gender: gender,
             dob: dob,
-            previous_experience_years:previousEx,
+            previous_experience_years: previousEx,
             dateOfJoining: dateOfJoinning,
             terminatedDate: "",
             deleted: false,
@@ -291,7 +291,7 @@ const EmployeeAdd = ({ inputs, title }) => {
                   placeholder="Position"
                   required={true}
                   onChange={(e) => {
-                    setPosition(e.target.value);
+                    setPosition(e.target.value.toLowerCase());
                   }}
                 ></input>
               </div>
