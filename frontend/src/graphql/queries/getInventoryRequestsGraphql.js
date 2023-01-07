@@ -8,12 +8,6 @@ query getAllWarehouseRe($test:String!){
             id
             unit
             qty
-            material{
-                id
-                name
-                measurement_unit
-                cost_pre_unit
-            }
         }
     }
 }`;

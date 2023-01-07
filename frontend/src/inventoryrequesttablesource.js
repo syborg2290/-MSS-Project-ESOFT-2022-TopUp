@@ -11,12 +11,12 @@ export const userColumns = [
   },
 
   {
-    field: "material",
-    headerName: "Material",
-    width: 260,
+    field: "inventory",
+    headerName: "Inventory",
+    width: 360,
     renderCell: (params) => {
       return (
-        <div className="cellWithImg">{params.row.inventory.material.name}</div>
+        <div className="cellWithImg">{params.row.inventory.id}</div>
       );
     },
   },
