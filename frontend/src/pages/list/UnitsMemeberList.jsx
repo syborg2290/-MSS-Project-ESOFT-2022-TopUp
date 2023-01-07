@@ -1,0 +1,18 @@
+import "./list.scss"
+import Sidebar from "../../components/sidebar/Sidebar"
+import Navbar from "../../components/navbar/Navbar"
+import UnitsMemberDatatable from "../../components/datatable/UnitsMemberDatatable"
+
+const UnitsMemeberList = () => {
+  return (
+    <div className="list">
+      <Sidebar/>
+      <div className="listContainer">
+        <Navbar/>
+     <UnitsMemberDatatable/>
+      </div>
+    </div>
+  )
+}
+
+export default UnitsMemeberList;
