@@ -15,7 +15,7 @@ const TaskDatatable = () => {
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      width: 400,
       renderCell: (params) => {
         return (
           <div className="cellAction">
@@ -24,6 +24,12 @@ const TaskDatatable = () => {
             </Link>
               <Link to="/tasks/rowmaterials" style={{ textDecoration: "none" }}>
               <div className="viewButton">RequestMaterials</div>
+            </Link>
+            <Link to="" style={{ textDecoration: "none" }}>
+              <div className="viewButton">Task Status</div>
+            </Link>
+            <Link to="" style={{ textDecoration: "none" }}>
+              <div className="viewButton">Task Progress</div>
             </Link>
             <div
               className="deleteButton"

@@ -22,6 +22,9 @@ const EmployeeDatatable = () => {
             <Link to="/employee/test" style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
+            <Link to="" style={{ textDecoration: "none" }}>
+              <div className="viewButton">getLeave</div>
+            </Link>
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
