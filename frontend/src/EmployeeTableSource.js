@@ -35,6 +35,32 @@ export const userColumns = [
     },
   },
   {
+    field: "total_leaves_count",
+    headerName: "Total Leaves Count",
+    width: 150,
+    renderCell: (params) => {
+      return <div className="cellWithImg">{params.row.leaves}</div>;
+    },
+  },
+  {
+    field: "get_leaves_count",
+    headerName: "Got Leaves Count",
+    width: 150,
+    renderCell: (params) => {
+      return (
+        <div
+          style={{
+            color: "red",
+            fontWeight: "bold",
+          }}
+          className="cellWithImg"
+        >
+          {params.row.getLeaves}
+        </div>
+      );
+    },
+  },
+  {
     field: "gender",
     headerName: "Gender",
     width: 100,

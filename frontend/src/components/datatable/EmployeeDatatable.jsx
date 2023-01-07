@@ -1,5 +1,5 @@
 import "./employeedatatable.scss";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { userColumns } from "../../EmployeeTableSource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -57,6 +57,7 @@ const EmployeeDatatable = () => {
         className="datagrid"
         rows={data}
         columns={userColumns.concat(actionColumn)}
+        components={{ Toolbar: GridToolbar }}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection

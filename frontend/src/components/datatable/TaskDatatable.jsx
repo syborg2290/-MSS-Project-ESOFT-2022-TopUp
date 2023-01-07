@@ -1,5 +1,5 @@
 import "./taskDatatable.scss";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { userColumns } from "../../tasktablesource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -149,6 +149,7 @@ const TaskDatatable = () => {
         className="datagrid"
         rows={data}
         columns={userColumns.concat(actionColumn)}
+        components={{ Toolbar: GridToolbar }}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection

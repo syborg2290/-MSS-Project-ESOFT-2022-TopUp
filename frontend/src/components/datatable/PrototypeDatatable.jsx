@@ -1,5 +1,5 @@
 import "./prototypeDatatable.scss"
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { userColumns } from "../../prototypeTableSource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -53,6 +53,7 @@ const PrototypeDatatable = () => {
       <DataGrid
         className="datagrid"
         rows={data}
+        components={{ Toolbar: GridToolbar }}
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}

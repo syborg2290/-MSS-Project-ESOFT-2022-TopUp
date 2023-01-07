@@ -1,5 +1,5 @@
 import "./materialsDatatable.scss";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { userColumns } from "../../MaterialsTablesource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -52,6 +52,7 @@ const MaterialsDatatable = () => {
       <DataGrid
         className="datagrid"
         rows={data}
+        components={{ Toolbar: GridToolbar }}
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
