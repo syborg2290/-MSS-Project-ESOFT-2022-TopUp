@@ -73,7 +73,18 @@ const Sidebar = () => {
               <span>Prototype</span>
             </li>
           </Link>
-
+          <Link to="/units" style={{ textDecoration: "none" }}>
+            <li>
+              <InsertChartIcon className="icon" />
+              <span>Units</span>
+            </li>
+          </Link>
+          <Link to="/unitsmember" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
+              <span>Units Members</span>
+            </li>
+          </Link>
           <p className="title">SERVICE</p>
           <li>
             <SettingsSystemDaydreamOutlinedIcon className="icon" />
