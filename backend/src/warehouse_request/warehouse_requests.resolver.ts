@@ -42,11 +42,12 @@ export class WarehouseReResolver {
     try {
       return (await this.warehouseReService.getAllWarehouseRequests()).map(
         async (item) => {
+          
           const obj: WareReGetDTO = {
             id: item.id,
             qty: item.qty,
             date: item.date,
-            inventory: item.inventory,
+            inventory: item.inventory
           };
           return obj;
         },

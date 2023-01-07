@@ -177,4 +177,17 @@ export class TaskService {
       return error;
     }
   }
+
+  getTaskByWithUnitId(id: string): Promise<Task> {
+    try {
+      return this.taskRepository
+        .createQueryBuilder('task')
+        .leftJoinAndSelect('task.unit', 'unit')
+        .where('task.id = :id', { id: id })
+        .getOne();
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
 }

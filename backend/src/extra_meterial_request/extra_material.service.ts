@@ -22,7 +22,7 @@ export class ExtraMaterialService {
 
   async createExtraMaterial(extMat: ExtraMaterialCreateDTO): Promise<Object> {
     try {
-      const task = await this.taskService.getTaskById(extMat.task);
+      const task = await this.taskService.getTaskByWithUnitId(extMat.task);
       const material = await this.materialService.getMaterialById(
         extMat.material,
       );
