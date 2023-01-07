@@ -148,12 +148,31 @@ export class TaskService {
     }
   }
 
-  async updateTaskProgress(id: string, newStatus: string): Promise<Object> {
+  async updateTaskStatus(id: string, newStatus: string): Promise<Object> {
     try {
       return new Promise(async (resolve, reject) => {
         const task = await this.getTaskById(id);
         if (task) {
           task.taskstatus = newStatus;
+          resolve({
+            message: 'success',
+            status: HttpStatus.OK,
+            data: this.taskRepository.save(task),
+          });
+        }
+      });
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  async updateTaskProgress(id: string, progress: number): Promise<Object> {
+    try {
+      return new Promise(async (resolve, reject) => {
+        const task = await this.getTaskById(id);
+        if (task) {
+          task.progress = progress;
           resolve({
             message: 'success',
             status: HttpStatus.OK,

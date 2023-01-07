@@ -21,6 +21,20 @@ export class EmployeeService {
     }
   }
 
+  async employeeLeavesUpdate(id: string): Promise<Employee> {
+    try {
+      const employee = await this.employeeRepository.findOne({
+        where: { id: id },
+      });
+      employee.getLeaves = employee.getLeaves + 1;
+
+      return this.employeeRepository.save(employee);
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
   async updateEmployee(employee: EmployeeCreateDTO): Promise<Object> {
     try {
       return new Promise((resolve, reject) => {
