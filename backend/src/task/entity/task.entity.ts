@@ -13,7 +13,7 @@ export class Task {
   @PrimaryColumn({ unique: true, nullable: false })
   id: string;
   @Field({ nullable: false })
-  @Column({ unique: true })
+  @Column()
   title: string;
   @Field()
   @Column()

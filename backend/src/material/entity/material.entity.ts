@@ -1,5 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { ExtraMaterial } from 'src/extra_meterial_request/entity/extra_meterial.entity';
+import { Inventory } from 'src/inventory/entity/inventory.entity';
+import { WarehouseInventory } from 'src/warehouse/entity/warehouse.enity';
 import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 
 @Entity()
@@ -22,4 +24,8 @@ export class Material {
   cost_pre_unit: Number;
   @OneToMany(() => ExtraMaterial, (exMat) => exMat.material)
   extra_meterials: ExtraMaterial[];
+  @OneToMany(() => Inventory, (inven) => inven.material)
+  inventory: Inventory[];
+  @OneToMany(() => WarehouseInventory, (inven) => inven.material)
+  warehouseInventory: WarehouseInventory[];
 }

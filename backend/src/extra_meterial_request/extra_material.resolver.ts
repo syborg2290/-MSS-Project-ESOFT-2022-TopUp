@@ -4,33 +4,56 @@ import { HttpExceptionFilter } from '../helper/exception.filter';
 import { ExtraMaterial } from './entity/extra_meterial.entity';
 import { ExtraMaterialService } from './extra_material.service';
 import { ExtraMaterialCreateDTO } from './dto/create-dto.input';
+import { ExMaterialGetDTO } from './dto/get-material.dto';
 
 @Resolver(() => ExtraMaterial)
 export class ExtraMaterialResolver {
   constructor(private ExtraMaterialService: ExtraMaterialService) {}
 
-  @Mutation(() => [ExtraMaterial], { name: 'createExtraMaterial' })
+  @Mutation(() => ExtraMaterial, { name: 'createExtraMaterial' })
   @UseFilters(new HttpExceptionFilter())
   async createExtraMaterial(
-    @Args('exMat') extMat: ExtraMaterialCreateDTO,
+    @Args('id') id: string,
+    @Args('task') task: string,
+    @Args('material') material: string,
+    @Args('qty') qty: number,
+    @Args('date') date: string,
     @Context() context,
   ) {
-    try {
-      let result: object = {};
-      let incomeRe: any = await this.ExtraMaterialService.createExtraMaterial(
-        extMat,
-      );
-      if (incomeRe.status != HttpStatus.OK) {
-        result = {
-          status: incomeRe.status,
-        };
-      } else {
-        result = {
-          status: incomeRe.status,
-        };
-      }
+    return new Promise(async (resolve, reject) => {
+      const extMat = new ExtraMaterialCreateDTO();
+      extMat.id = id;
+      extMat.task = task;
+      extMat.material = material;
+      extMat.qty = qty;
+      extMat.date = date;
+      resolve(await this.ExtraMaterialService.createExtraMaterial(extMat));
+    }).then(
+      (res) => {
+        return res;
+      },
+      (err) => {
+        return err;
+      },
+    );
+  }
 
-      return result;
+  @Query(() => [ExMaterialGetDTO], { name: 'getAllExMat' })
+  @UseFilters(new HttpExceptionFilter())
+  async getAllExMat(@Args('test') test: string) {
+    try {
+      return (await this.ExtraMaterialService.getAllExMat()).map(
+        async (item) => {
+          const obj: ExMaterialGetDTO = {
+            id: item.id,
+            task: item.task,
+            material: item.material,
+            date: item.date,
+            qty: item.qty,
+          };
+          return obj;
+        },
+      );
     } catch (error) {
       console.log(error);
       return error;

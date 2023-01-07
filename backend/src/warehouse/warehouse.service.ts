@@ -14,26 +14,22 @@ export class WarehouseService {
     private readonly materialService: MaterialService,
   ) {}
 
-  async addInventory(invent: WarehouseInventoryCreateDTO): Promise<Object> {
+  async addInventory(
+    invent: WarehouseInventoryCreateDTO,
+  ): Promise<WarehouseInventory> {
     try {
-      return new Promise(async (resolve, reject) => {
-        const material = await this.materialService.getMaterialById(
-          invent.material,
-        );
-        if (material) {
-          const invenDbObj = {
-            id: invent.id,
-            qty: invent.qty,
-            material: material,
-          };
-          const inventoryEn = this.warehouseInventRepository.create(invenDbObj);
-          resolve({
-            message: 'success',
-            status: HttpStatus.OK,
-            data: this.warehouseInventRepository.save(inventoryEn),
-          });
-        }
-      });
+      const material = await this.materialService.getMaterialById(
+        invent.material,
+      );
+      if (material) {
+        const invenDbObj = {
+          id: invent.id,
+          qty: invent.qty,
+          material: material,
+        };
+        const inventoryEn = this.warehouseInventRepository.create(invenDbObj);
+        return this.warehouseInventRepository.save(inventoryEn);
+      }
     } catch (error) {
       console.log(error);
       return error;
@@ -60,6 +56,38 @@ export class WarehouseService {
           });
         }
       });
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  getAllInventoryWarehouse(): Promise<WarehouseInventory[]> {
+    try {
+      return this.warehouseInventRepository
+        .createQueryBuilder('warehouse_inventory')
+        .leftJoinAndSelect('warehouse_inventory.material', 'material')
+        .getMany();
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+  async updateQtyWarehouse(
+    material: string,
+    qty: number,
+  ): Promise<WarehouseInventory> {
+    try {
+      const inveRes = await this.warehouseInventRepository
+        .createQueryBuilder('warehouse_inventory')
+        .leftJoinAndSelect('warehouse_inventory.material', 'material')
+        .where('material.id = :id', { id: material })
+        .getOne();
+      if (inveRes) {
+        console.log(inveRes)
+        inveRes.qty = inveRes.qty - qty <= 0 ? 0 : inveRes.qty - qty;
+        return this.warehouseInventRepository.save(inveRes);
+      }
     } catch (error) {
       console.log(error);
       return error;

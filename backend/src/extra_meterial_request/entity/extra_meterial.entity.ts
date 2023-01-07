@@ -15,7 +15,7 @@ export class ExtraMaterial {
   material: Material;
   @Field()
   @Column({ nullable: false })
-  qty: Number;
+  qty: number;
   @Field()
   @Column({ nullable: false })
   date: string;

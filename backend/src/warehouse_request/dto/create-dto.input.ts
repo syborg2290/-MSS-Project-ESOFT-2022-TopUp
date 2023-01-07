@@ -2,14 +2,17 @@ import { Field, InputType } from '@nestjs/graphql';
 import { Column } from 'typeorm';
 
 @InputType()
-export class WarehouseInventoryCreateDTO {
+export class WarehouseReqCreateDTO {
   @Field()
   @Column()
   id: string;
   @Field()
   @Column()
-  qty: number;
+  qty: Number;
   @Field()
   @Column()
-  material: string;
+  inventory: string;
+  @Field()
+  @Column()
+  date: string;
 }

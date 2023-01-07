@@ -14,7 +14,7 @@ export class ExtraMaterialCreateDTO {
   material: string;
   @Field()
   @Column()
-  qty: Number;
+  qty: number;
   @Field()
   @Column()
   date: string;

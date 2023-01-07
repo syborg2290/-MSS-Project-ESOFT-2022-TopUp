@@ -11,7 +11,7 @@ export class InventoryCreateDTO {
   unit: string;
   @Field()
   @Column()
-  qty: Number;
+  qty: number;
   @Field()
   @Column()
   material: string;  

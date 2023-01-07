@@ -1,6 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { Material } from 'src/material/entity/material.entity';
-import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryColumn } from 'typeorm';
 
 @Entity()
 @ObjectType()
@@ -10,8 +10,7 @@ export class WarehouseInventory {
   id: string;
   @Field()
   @Column()
-  qty: Number;
-  @OneToOne(() => Material)
-  @JoinColumn()
+  qty: number;
+  @ManyToOne(() => Material, (mat) => mat.warehouseInventory)
   material: Material;
 }

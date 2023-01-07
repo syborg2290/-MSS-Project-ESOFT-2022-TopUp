@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EmployeeModule } from 'src/employee/employee.module';
+import { InventoryModule } from 'src/inventory/inventory.module';
 import { ProjectModule } from 'src/project/project.module';
 import { PrototypeModule } from 'src/prototype/prototype.module';
 import { UnitModule } from 'src/unit/unit.module';
@@ -15,6 +16,7 @@ import { TaskService } from './task.service';
     UnitModule,
     EmployeeModule,
     PrototypeModule,
+    InventoryModule,
   ],
   providers: [TaskResolver, TaskService],
   exports: [TaskService],

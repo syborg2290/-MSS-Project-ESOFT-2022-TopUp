@@ -5,6 +5,7 @@ import { ExtraMaterialCreateDTO } from './dto/create-dto.input';
 import { ExtraMaterial } from './entity/extra_meterial.entity';
 import { TaskService } from '../task/task.service';
 import { MaterialService } from '../material/material.service';
+import { InventoryService } from 'src/inventory/inventory.service';
 
 @Injectable()
 export class ExtraMaterialService {
@@ -15,31 +16,45 @@ export class ExtraMaterialService {
     private readonly taskService: TaskService,
     @Inject(MaterialService)
     private readonly materialService: MaterialService,
+    @Inject(InventoryService)
+    private readonly inventoryService: InventoryService,
   ) {}
 
   async createExtraMaterial(extMat: ExtraMaterialCreateDTO): Promise<Object> {
     try {
-      return new Promise(async (resolve, reject) => {
-        const task = await this.taskService.getTaskById(extMat.task);
-        const material = await this.materialService.getMaterialById(
-          extMat.material,
+      const task = await this.taskService.getTaskById(extMat.task);
+      const material = await this.materialService.getMaterialById(
+        extMat.material,
+      );
+      if (material && task) {
+        const exMatDbObj = {
+          id: extMat.id,
+          task: task,
+          material: material,
+          qty: extMat.qty,
+          date: extMat.date,
+        };
+        const extEn = this.exMatRepository.create(exMatDbObj);
+        await this.inventoryService.updateInventoryQty(
+          extMat.qty,
+          task.unit.id,
+          material.id,
         );
-        if (material && task) {
-          const exMatDbObj = {
-            id: extMat.id,
-            task: task,
-            material: material,
-            qty: extMat.qty,
-            date: extMat.date,
-          };
-          const extEn = this.exMatRepository.create(exMatDbObj);
-          resolve({
-            message: 'success',
-            status: HttpStatus.OK,
-            data: this.exMatRepository.save(extEn),
-          });
-        }
-      });
+        return this.exMatRepository.save(extEn);
+      }
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  getAllExMat(): Promise<ExtraMaterial[]> {
+    try {
+      return this.exMatRepository
+        .createQueryBuilder('extra_material')
+        .leftJoinAndSelect('extra_material.task', 'task')
+        .leftJoinAndSelect('extra_material.material', 'material')
+        .getMany();
     } catch (error) {
       console.log(error);
       return error;
