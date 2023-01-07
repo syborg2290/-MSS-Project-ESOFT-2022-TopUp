@@ -4,6 +4,8 @@ import { HttpExceptionFilter } from '../helper/exception.filter';
 import { Employee } from './entity/employee.entity';
 import { EmployeeService } from './employee.service';
 import { EmployeeCreateDTO } from './dto/create-employee.input';
+import { EmployeeRetenCountGetDTO } from './dto/get-empRe2.dto';
+import { EmployeeReten2GetDTO } from './dto/get-empRe.dto';
 
 @Resolver(() => Employee)
 export class EmployeeResolver {
@@ -21,7 +23,7 @@ export class EmployeeResolver {
     @Args('email') email: string,
     @Args('gender') gender: string,
     @Args('dob') dob: string,
-    @Args('previous_experience_years') previous_experience_years:number,
+    @Args('previous_experience_years') previous_experience_years: number,
     @Args('dateOfJoining') dateOfJoining: string,
     @Args('terminatedDate') terminatedDate: string,
     @Args('deleted') deleted: boolean,
@@ -113,6 +115,47 @@ export class EmployeeResolver {
     try {
       const usedBy = await this.employeeService.getAllEmployees();
       return usedBy;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  @Query(() => EmployeeRetenCountGetDTO, {
+    name: 'getAllEmployeesThatRetireInNextYear',
+  })
+  @UseFilters(new HttpExceptionFilter())
+  async getAllEmployeesThatRetireInNextYear(
+    @Args('test') test: string,
+    @Context() context,
+  ) {
+    try {
+      const usedBy =
+        await this.employeeService.getAllEmployeesThatRetireInNextYear();
+      const reObj = new EmployeeRetenCountGetDTO();
+      reObj.count = usedBy['count'];
+      reObj.presentage = usedBy['presentage'];
+      return reObj;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  @Query(() => EmployeeReten2GetDTO, {
+    name: 'getAllEmployeesThatRetireInNextYears',
+  })
+  @UseFilters(new HttpExceptionFilter())
+  async getAllEmployeesThatRetireInNextYears(
+    @Args('test') test: string,
+    @Context() context,
+  ) {
+    try {
+      const usedBy =
+        await this.employeeService.getAllEmployeesThatRetireInNextYears();
+      const reObj = new EmployeeReten2GetDTO();
+      reObj.ret = usedBy;
+      return reObj;
     } catch (error) {
       console.log(error);
       return error;

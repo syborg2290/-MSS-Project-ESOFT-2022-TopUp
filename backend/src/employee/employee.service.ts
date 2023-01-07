@@ -21,6 +21,14 @@ export class EmployeeService {
     }
   }
 
+  async employeeRetention(): Promise<Object> {
+    try {
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
   async employeeLeavesUpdate(id: string): Promise<Employee> {
     try {
       const employee = await this.employeeRepository.findOne({
@@ -54,6 +62,57 @@ export class EmployeeService {
   getAllEmployees(): Promise<Employee[]> {
     try {
       return this.employeeRepository.find();
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  async getAllEmployeesThatRetireInNextYear(): Promise<Object> {
+    try {
+      let count = 0;
+      await (
+        await this.employeeRepository.find()
+      ).map((each) => {
+        var today = new Date();
+        var birthDate = new Date(each.dob);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+          age--;
+        }
+        if (age >= 54) {
+          count++;
+        }
+      });
+      return {
+        count: count,
+        presentage:
+          (count / (await (await this.employeeRepository.find()).length)) * 100,
+      };
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  async getAllEmployeesThatRetireInNextYears(): Promise<string> {
+    try {
+      let retenChart = {};
+      await (
+        await this.employeeRepository.find()
+      ).map((each) => {
+        var today = new Date();
+        var birthDate = new Date(each.dob);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+          age--;
+        }
+        const year = new Date().getFullYear();
+        retenChart[year] = age;
+      });
+      return JSON.stringify(retenChart ? retenChart : '');
     } catch (error) {
       console.log(error);
       return error;

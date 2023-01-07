@@ -3,7 +3,6 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { IncomeModule } from './income/income.module';
 import { MaterialModule } from './material/material.module';
 import { TaskModule } from './task/task.module';
 import { EmployeeModule } from './employee/employee.module';
@@ -23,7 +22,6 @@ dotenv.config();
 
 @Module({
   imports: [
-    IncomeModule,
     MaterialModule,
     TaskModule,
     EmployeeModule,
