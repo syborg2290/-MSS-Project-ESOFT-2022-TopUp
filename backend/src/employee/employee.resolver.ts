@@ -162,6 +162,21 @@ export class EmployeeResolver {
     }
   }
 
+  @Mutation(() => Employee, { name: 'employeeLeavesUpdate' })
+  @UseFilters(new HttpExceptionFilter())
+  async employeeLeavesUpdate(@Args('id') id: string) {
+    return new Promise(async (resolve, reject) => {
+      resolve(await this.employeeService.employeeLeavesUpdate(id));
+    }).then(
+      (res) => {
+        return res;
+      },
+      (err) => {
+        return err;
+      },
+    );
+  }
+
   @Query(() => Employee, { name: 'getEmployeeById' })
   @UseFilters(new HttpExceptionFilter())
   async getEmployeeById(@Args('id') id: string) {
