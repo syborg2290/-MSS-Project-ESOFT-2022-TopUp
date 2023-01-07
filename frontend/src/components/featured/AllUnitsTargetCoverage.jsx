@@ -5,18 +5,18 @@ import "react-circular-progressbar/dist/styles.css";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 
-const Featured = () => {
+const AllUnitsTargetCoverage = () => {
   return (
     <div className="featured">
       <div className="top">
-        <h1 className="title">Total Revenue</h1>
+        <h1 className="title">AllUnitsTargetCoverage</h1>
         <MoreVertIcon fontSize="small" />
       </div>
       <div className="bottom">
         <div className="featuredChart">
           <CircularProgressbar value={70} text={"70%"} strokeWidth={5} />
         </div>
-        <p className="title">Total sales made today</p>
+        <p className="title">AllUnitsTargetCoverage today</p>
         <p className="amount">$420</p>
         <p className="desc">
           Previous transactions processing. Last payments may not be included.
@@ -49,4 +49,4 @@ const Featured = () => {
   );
 };
 
-export default Featured;
+export default AllUnitsTargetCoverage;

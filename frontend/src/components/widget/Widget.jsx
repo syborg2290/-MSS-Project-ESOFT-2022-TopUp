@@ -13,9 +13,9 @@ const Widget = ({ type }) => {
   const diff = 20;
 
   switch (type) {
-    case "user":
+    case "emp":
       data = {
-        title: "USERS",
+        title: "Employee Retention",
         isMoney: false,
         link: "See all users",
         icon: (
@@ -29,9 +29,9 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "order":
+    case "emp2":
       data = {
-        title: "ORDERS",
+        title: "Employee Task Progress",
         isMoney: false,
         link: "View all orders",
         icon: (
@@ -45,9 +45,25 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "earning":
+      case "emp3":
+        data = {
+          title: "All Employees Task Progress",
+          isMoney: false,
+          link: "View all orders",
+          icon: (
+            <ShoppingCartOutlinedIcon
+              className="icon"
+              style={{
+                backgroundColor: "rgba(218, 165, 32, 0.2)",
+                color: "goldenrod",
+              }}
+            />
+          ),
+        };
+        break;
+      case "emp4":
       data = {
-        title: "EARNINGS",
+        title: "Unit target Coverage",
         isMoney: true,
         link: "View net earnings",
         icon: (
@@ -58,22 +74,84 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "balance":
-      data = {
-        title: "BALANCE",
-        isMoney: true,
-        link: "See details",
-        icon: (
-          <AccountBalanceWalletOutlinedIcon
-            className="icon"
-            style={{
-              backgroundColor: "rgba(128, 0, 128, 0.2)",
-              color: "purple",
-            }}
-          />
-        ),
-      };
-      break;
+      case "emp5":
+        data = {
+          title: "All Units Target Coverage",
+          isMoney: true,
+          link: "View net earnings",
+          icon: (
+            <MonetizationOnOutlinedIcon
+              className="icon"
+              style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
+            />
+          ),
+        };
+        break;
+        case "emp6":
+          data = {
+            title: "Employee Reordered Material Cost",
+            isMoney: true,
+            link: "View net earnings",
+            icon: (
+              <MonetizationOnOutlinedIcon
+                className="icon"
+                style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
+              />
+            ),
+          };
+          break;
+          case "emp7":
+            data = {
+              title: "All Employee Reordered Material Countage",
+              isMoney: true,
+              link: "View net earnings",
+              icon: (
+                <MonetizationOnOutlinedIcon
+                  className="icon"
+                  style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
+                />
+              ),
+            };
+            break;
+          case "emp8":
+            data = {
+              title: "Unit Supplied Material Cost Countage",
+              isMoney: true,
+              link: "View net earnings",
+              icon: (
+                <MonetizationOnOutlinedIcon
+                  className="icon"
+                  style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
+                />
+              ),
+            };
+            break;
+            case "emp9":
+              data = {
+                title: "All Units Supplied Materials Cost Coverage",
+                isMoney: true,
+                link: "View net earnings",
+                icon: (
+                  <MonetizationOnOutlinedIcon
+                    className="icon"
+                    style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
+                  />
+                ),
+              };
+              break;
+              case "emp10":
+                data = {
+                  title: "Overall Income Reports",
+                  isMoney: true,
+                  link: "View net earnings",
+                  icon: (
+                    <MonetizationOnOutlinedIcon
+                      className="icon"
+                      style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
+                    />
+                  ),
+                };
+                break;
     default:
       break;
   }
