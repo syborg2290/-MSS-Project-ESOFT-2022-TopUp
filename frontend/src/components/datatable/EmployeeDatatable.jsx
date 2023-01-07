@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getAllEmployeesQuery } from "../../graphql/queries/getEmployeeGraphql";
 import { apiCaller } from "../../utils/axios-request-caller";
+import { updateLeavesQuery } from "../../graphql/mutations/updateLeavesGraphql";
+import { Button } from "@mui/material";
 
 const EmployeeDatatable = () => {
   const [data, setData] = useState([]);
@@ -25,9 +27,19 @@ const EmployeeDatatable = () => {
     setData(res.data.data.getAllEmployees);
   };
 
-  // const handleDelete = (id) => {
-  //   setData(data.filter((item) => item.id !== id));
-  // };
+  const getLeaveFunc = async (id) => {
+    const graphqlQuery = {
+      operationName: "employeeLeavesUpdate",
+      query: updateLeavesQuery,
+      variables: {
+        id: id,
+      },
+    };
+    const res = await apiCaller(graphqlQuery, "");
+    if (res.data.data !== null) {
+      window.location.reload();
+    }
+  };
 
   const actionColumn = [
     {
@@ -40,6 +52,14 @@ const EmployeeDatatable = () => {
             <Link to="/employee/test" style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
+
+            <Button
+              onClick={() => {
+                getLeaveFunc(params.row.id);
+              }}
+            >
+              Get A Leave
+            </Button>
           </div>
         );
       },

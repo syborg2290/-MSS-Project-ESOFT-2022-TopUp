@@ -35,7 +35,7 @@ export const userColumns = [
               : params.row.task.taskstatus === "onprogress"
               ? {
                   backgroundColor: "yellow",
-                  color: "white",
+                  color: "black",
                   fontWeight: "bold",
                   padding: "5px",
                 }
