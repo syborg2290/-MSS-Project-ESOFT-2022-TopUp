@@ -10,21 +10,20 @@ import {
 import { useEffect, useState } from "react";
 
 const data = [
-  { name: "2022", Total: 20 },
-  { name: "2023", Total: 100 },
-  { name: "2023", Total: 5 },
-  { name: "2022", Total: 45 },
-  { name: "2023", Total: 0 },
-  { name: "2021", Total: 12.5 },
+  { name: "January", Total: 2.9 },
+  { name: "February", Total: 30 },
+  { name: "March", Total: 5 },
+  { name: "April", Total: 9 },
+  { name: "May", Total: 0 },
+  { name: "June", Total: 12.5 },
 ];
 
+const Chart2 = ({ aspect, title }) => {
+  // const [data, setData] = useState([]);
 
-const Chart = ({ aspect, title,chart1 }) => {
-  const [datare, setData] = useState([]);
-
-  useEffect(() => {
-    setData(chart1);
-  }, [chart1]);
+  // useEffect(() => {
+  //   setData(chart1);
+  // }, [chart1]);
 
   return (
     <div className="chart">
@@ -60,5 +59,5 @@ const Chart = ({ aspect, title,chart1 }) => {
   );
 };
 
-export default Chart;
+export default Chart2;
 

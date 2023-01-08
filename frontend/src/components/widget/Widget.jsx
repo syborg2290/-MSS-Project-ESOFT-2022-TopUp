@@ -13,6 +13,7 @@ const Widget = ({ type, amount = 0, dataObj }) => {
       data = {
         title: "Employee Retention Count",
         isMoney: false,
+        amount: 0,
         icon: (
           <PersonOutlinedIcon
             className="icon"
@@ -28,123 +29,106 @@ const Widget = ({ type, amount = 0, dataObj }) => {
       data = {
         title: "Employee Task Progress",
         isMoney: false,
-        link: "View all orders",
-        icon: (
-          <ShoppingCartOutlinedIcon
-            className="icon"
-            style={{
-              backgroundColor: "rgba(218, 165, 32, 0.2)",
-              color: "goldenrod",
-            }}
-          />
-        ),
+        amount: 10,
       };
       break;
     case "emp3":
       data = {
         title: "All Employees Task Progress",
         isMoney: false,
-        link: "View all orders",
-        icon: (
-          <ShoppingCartOutlinedIcon
-            className="icon"
-            style={{
-              backgroundColor: "rgba(218, 165, 32, 0.2)",
-              color: "goldenrod",
-            }}
-          />
-        ),
+        amount: 20,
       };
       break;
     case "emp4":
       data = {
         title: "Unit target Coverage",
-        isMoney: true,
-        link: "View net earnings",
+        isMoney: false,
         icon: (
           <MonetizationOnOutlinedIcon
             className="icon"
             style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
           />
         ),
+        amount: 5,
       };
       break;
     case "emp5":
       data = {
         title: "All Units Target Coverage",
-        isMoney: true,
-        link: "View net earnings",
+        isMoney: false,
         icon: (
           <MonetizationOnOutlinedIcon
             className="icon"
             style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
           />
         ),
+        amount: 5.5,
       };
       break;
     case "emp6":
       data = {
         title: "Employee Reordered Material Cost",
         isMoney: true,
-        link: "View net earnings",
         icon: (
           <MonetizationOnOutlinedIcon
             className="icon"
             style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
           />
         ),
+        amount: 1,
       };
       break;
     case "emp7":
       data = {
         title: "All Employee Reordered Material Countage",
-        isMoney: true,
-        link: "View net earnings",
+        isMoney: false,
+
         icon: (
           <MonetizationOnOutlinedIcon
             className="icon"
             style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
           />
         ),
+        amount: 0,
       };
       break;
     case "emp8":
       data = {
         title: "Unit Supplied Material Cost Countage",
         isMoney: true,
-        link: "View net earnings",
         icon: (
           <MonetizationOnOutlinedIcon
             className="icon"
             style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
           />
         ),
+        amount: 0,
       };
       break;
     case "emp9":
       data = {
         title: "All Units Supplied Materials Cost Coverage",
         isMoney: true,
-        link: "View net earnings",
         icon: (
           <MonetizationOnOutlinedIcon
             className="icon"
             style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
           />
         ),
+        amount: 0,
       };
       break;
     case "emp10":
       data = {
         title: "Overall Income Reports",
         isMoney: true,
-        link: "View net earnings",
         icon: (
           <MonetizationOnOutlinedIcon
             className="icon"
             style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
           />
         ),
+        amount: 0,
       };
       break;
     default:
@@ -156,7 +140,19 @@ const Widget = ({ type, amount = 0, dataObj }) => {
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
-          {type === "emp" ? dataObj.count : data.isMoney && "$" + amount}
+          {type === "emp"
+            ? dataObj.count + "%"
+            : type == "emp2"
+            ? data.amount
+            : type == "emp3"
+            ? data.amount + "%"
+            : type == "emp4"
+            ? data.amount + "%"
+            : type == "emp5"
+            ? data.amount + "%"
+            : type == "emp7"
+            ? data.amount
+            : data.isMoney && "$" + amount}
         </span>
         <span className="link">{data.link}</span>
       </div>
